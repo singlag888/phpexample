@@ -1,0 +1,10 @@
+ /Applications/MAMP/Library/bin/mysql -u root -p
+
+create database phpuse;
+
+create table login(id int(11) not null auto_increment primary key,name char(8) not null,password char(128) not null );
+
+create table user (id int(11) not null auto_increment primary key,name char(64),grade tinyint,email char(128),salary float not null);
+
+ desc user;
+
