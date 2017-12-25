@@ -8,6 +8,7 @@
 
 ini_set("error_reporting", true);
 error_reporting(E_ALL);
+error_reporting(E_STRICT);
 /*
 $input = <<<'EOD'
 1;PHP;Likes dollar signs
@@ -401,12 +402,56 @@ if(!isset($_SERVER['PHP_AUTH_USER']) || ($_POST['SeenBefore']==1 && $_POST['OldA
 
 $defined = defined("world");
 
-echo $defined ."<br/>";
+echo $defined . "<br/>";
 var_dump($defined);
 
-define("world",__DIR__);
+define("world", __DIR__);
 
 $defined = defined("world");
 
 echo $defined;
 var_dump($defined);
+
+class Test
+{
+    public static function readMe()
+    {
+        for ($i = 0; $i < 10; $i++) {
+
+        }
+
+    }
+}
+
+echo "<br/>";
+
+interface Video{
+    public function getVideos();
+    public function getCount();
+}
+
+class Movie implements Video{
+
+    public function __construct()
+    {
+        echo __FILE__.__LINE__;
+    }
+
+    public function getVideos()
+    {
+        return "videos";
+    }
+
+    public function getCount()
+    {
+        return 32;
+    }
+}
+
+echo Movie::getVideos();
+
+$movie = new Movie();
+
+#[PHP中使用静态方式调用非静态方法的问题](http://www.chanxiaoxi.me/2015/11/18/static-call-non-static-method-in-php/)
+
+
