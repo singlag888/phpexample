@@ -6,57 +6,46 @@
  * Time: 上午9:41
  */
 
-class Encode
-{
-    public static function xmlEncode($code, $message, $data = array())
-    {
-        if (!is_numeric($code)) {
-            return "";
-        }
 
-        $result = array(
-            'code' => $code,
-            'message' => $message,
-            'data' => $data
-        );
-        header("Content-Type:text/xml");
-        $xml = "";
+require_once '../Error.php';
 
-        $xml .= "<root>";
-        $xml .= self::xmlToEncode($result);
-        $xml .= "</root>";
-        return $xml;
-    }
-
-    public static function xmlToEncode($data)
-    {
-        $xml = "";
-        foreach ($data as $key => $value) {
-            $attr = "";
-            if (is_numeric($key)) {
-                $attr = " id='{$key}'";
-                $key = 'item';
-            }
-            $xml .= "<{$key}{$attr}>";
-            $xml .= is_array($value) ? self::xmlToEncode($value) : $value;
-            $xml .= "</{$key}>\n";
-        }
-        return $xml;
-    }
-}
+require_once 'CacheFile.php';
+require_once 'Encode.php';
+require_once 'Response.php';
 
 $format = $_GET['format'];
 
 $data = [
-    'name'=>'world',
-    'age' =>32,
-    'sex'=>'fale',
-    'func'=>'what',
-    'ma'=>[
-        'world'=>'hello',
-        'this'=>'sugar',
-        'coff'=>'black',
+    'name' => 'world',
+    'age' => 32,
+    'sex' => 'fale',
+    'func' => 'what',
+    'ma' => [
+        'world' => 'hello',
+        'this' => 'sugar',
+        'coff' => 'black',
     ],
 ];
 //echo $format."<br>";
-echo Encode::xmlEncode(200,'返回东西了',$data);
+//echo Encode::xmlEncode(200,'返回东西了',$data);
+//echo Encode::encoder(200, '请求成功', $data, $format);
+
+//$cache = new CacheFile();
+//$result = $cache->cacheData("test-cache", $data);
+//var_dump($result);
+//
+//var_dump($cache->cacheData('test-cache'));
+//
+//var_dump($cache->cacheData('test-cache', null));
+
+//var_dump($_SERVER);
+//var_dump($_REQUEST);
+
+$cacheFile = new CacheFile();
+$cacheData = $cacheFile->cacheData($_SERVER['REQUEST_URI']);
+if (!$cacheData) {
+    $cacheData = Response::getArticleList();
+    $cacheFile->cacheData($_SERVER['REQUEST_URI'], $cacheData, 50);
+}
+
+echo Encode::encoder(200, "", $cacheData, $format);

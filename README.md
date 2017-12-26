@@ -2,14 +2,18 @@ PHP 练习
 =======
 
 
-### userman
-[简单的雇员管理系统](http://blog.51cto.com/xxlixin1993/1581996)  
+### [简单的雇员管理系统](http://blog.51cto.com/xxlixin1993/1581996)  
+userman/index.php
 
 ### [WEB在线文件管理器](https://www.imooc.com/learn/94)
+fileManager/index.php
 在线版文件管理器，PHP对文件的操作和PHP对文件夹的操作。
 
 ### [Restful API](/restfulapi/README.md) 
-api接口设计
+restfulapi/index.php
+
+### [PHP开发APP接口](https://www.imooc.com/learn/163)
+appapi/index.php  
 
 
 

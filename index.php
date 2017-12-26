@@ -454,4 +454,5 @@ $movie = new Movie();
 
 #[PHP中使用静态方式调用非静态方法的问题](http://www.chanxiaoxi.me/2015/11/18/static-call-non-static-method-in-php/)
 
+ phpinfo();
 
