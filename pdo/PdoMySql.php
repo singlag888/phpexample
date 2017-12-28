@@ -171,7 +171,7 @@ class PdoMySql
             . self::parseOrder($order)
             . self::parseLimit($limit);
         $data = self::getAll($sql);
-        return $data;
+        return count($data) == 1 ? $data[0] : $data;
     }
 
     /**

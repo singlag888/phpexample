@@ -228,8 +228,3 @@ function stmtError($stmt, $pdo)
         var_dump($pdo->errorInfo());
     }
 }
-
-require_once '../vendor/autoload.php';
-
-$log = new \Monolog\Logger('name');
-$log->pushHandler(new \Monolog\Handler\StreamHandler(''))

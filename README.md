@@ -16,6 +16,7 @@ restfulapi/index.php
 appapi/index.php  
 
 ### PDO
+pdo/app/index.php
 [PDO—数据库抽象层](https://www.imooc.com/learn/164)  
 [PHP 数据对象 PHP Data Object--官方文档](http://php.net/manual/zh/book.pdo.php#book.pdo)  
 
@@ -37,4 +38,40 @@ appapi/index.php
 
 [用PHP写一个论坛](http://phpbook.phpxy.com/34745) 
 
- 
+
+
+## [composer](http://docs.phpcomposer.com/00-intro.html)  
+
+安装依赖示例  
+`composer require monolog/monolog`
+
+将会更新`composer.json`和`composer.lock`文件，并将依赖库下载至`vendor`目录中。
+
+使用指定版本PHP版本下载依赖  
+`/usr/local/php5.6/bin/php composer.phar update`
+
+
+## 使用Swiftmailer和Gmail发送邮件
+
+需要在Google中`开启` [允许不够安全的应用](https://myaccount.google.com/security?utm_source=OGB&utm_medium=act&pli=1#signin)
+
+```php
+require_once 'vendor/autoload.php';
+
+$transport = new Swift_SmtpTransport('smtp.gmail.com', 465);
+$transport->setUsername("name@gmail.com")->setPassword("password")
+->setAuthMode('login')->setEncryption('ssl');
+
+$mailer = new Swift_Mailer($transport);
+
+$message = (new Swift_Message('Wonderful Subject'))
+    ->setFrom(['john@doe.com'=>"johon Doe"])
+    ->setTo(['name@gmail.com'])
+    ->setBody('Here is the message itself');
+
+$result = $mailer->send($message);
+var_dump($result);
+```
+
+参考：
+[如何使用Gmail来发送邮件](http://www.symfonychina.com/doc/current/email/gmail.html)  
