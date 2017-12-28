@@ -15,6 +15,9 @@ restfulapi/index.php
 ### [PHP开发APP接口](https://www.imooc.com/learn/163)
 appapi/index.php  
 
+### PDO
+[PDO—数据库抽象层](https://www.imooc.com/learn/164)  
+[PHP 数据对象 PHP Data Object--官方文档](http://php.net/manual/zh/book.pdo.php#book.pdo)  
 
 
 ### 参考资源
