@@ -400,7 +400,7 @@ if(!isset($_SERVER['PHP_AUTH_USER']) || ($_POST['SeenBefore']==1 && $_POST['OldA
 //xdebug_debug_zval($a);
 //
 //log("hello world");
-
+/*
 $defined = defined("world");
 
 echo $defined . "<br/>";
@@ -447,7 +447,7 @@ class Movie implements Video{
     {
         return 32;
     }
-}
+}*/
 
 //echo Movie::getVideos();
 
@@ -455,5 +455,39 @@ class Movie implements Video{
 
 #[PHP中使用静态方式调用非静态方法的问题](http://www.chanxiaoxi.me/2015/11/18/static-call-non-static-method-in-php/)
 
-// phpinfo();
+ phpinfo();
+/*
+$defined = defined('STDIN');
+var_dump($defined);
+
+//一个php同时只能执行一个？从两个地方调用？
+//获取当前文件目录
+var_dump(realpath('.'));
+var_dump(getcwd());
+
+chdir("/Users/hello/");
+
+var_dump(realpath('.'));
+var_dump(getcwd());
+
+$fopen = fopen('php://stdin', 'r');
+//var_dump($fopen);
+while ($line = fgets($fopen)) {
+    if (!empty($line)) {
+        echo $line;
+    } else {
+        break;
+    }
+}
+
+fclose($fopen);*/
+
+
+
+//$fout = fopen('php://stdout', 'w');
+//var_dump($fout);
+//
+//$ferror = fopen('php://stderr', 'r');
+//var_dump($ferror);
+
 

@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //define('root','../../../user_guide');
-$config['base_url'] = '../../../user_guide';
+$config['base_url'] = '../../../CodeIgniter';
 
 /*
 |--------------------------------------------------------------------------
