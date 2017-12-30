@@ -133,6 +133,10 @@ if ( ! function_exists('load_class'))
 	 * exist it is instantiated and set to a static variable. If it has
 	 * previously been instantiated the variable is returned.
 	 *
+     * 先获取 system 和 application 目录下指定文件，
+     * 再获取 application 目录下以 subclass_prefix 开头的扩展文件，
+     * 如果扩展文件存在，使用扩展文件，不存在使用 第一步获取到的
+     *
 	 * @param	string	the class name being requested
 	 * @param	string	the directory where the class should be found
 	 * @param	mixed	an optional argument to pass to the class constructor
@@ -232,6 +236,8 @@ if ( ! function_exists('get_config'))
 	 * This function lets us grab the config file even if the Config class
 	 * hasn't been instantiated yet
 	 *
+     * 获取 application/config/config.php 配置文件，优先使用 当前定义的测试环境目录文件
+     *
 	 * @param	array
 	 * @return	array
 	 */

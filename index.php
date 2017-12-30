@@ -455,7 +455,7 @@ class Movie implements Video{
 
 #[PHP中使用静态方式调用非静态方法的问题](http://www.chanxiaoxi.me/2015/11/18/static-call-non-static-method-in-php/)
 
- phpinfo();
+phpinfo();
 /*
 $defined = defined('STDIN');
 var_dump($defined);
@@ -483,7 +483,6 @@ while ($line = fgets($fopen)) {
 fclose($fopen);*/
 
 
-
 //$fout = fopen('php://stdout', 'w');
 //var_dump($fout);
 //
@@ -491,3 +490,18 @@ fclose($fopen);*/
 //var_dump($ferror);
 
 
+
+$file_exists = file_exists(__FILE__);
+var_dump($file_exists);
+
+//var_dump(class_exists('SingleDb',true));
+var_dump(class_exists('SingleDb',false));
+require_once('appapi/SingleDb.php');
+
+class MyIndex
+{
+    public function __construct()
+    {
+        echo 'construct';
+    }
+}

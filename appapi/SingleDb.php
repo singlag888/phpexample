@@ -19,6 +19,7 @@ class SingleDb
      */
     private function __construct()
     {
+        echo "SingleDb construct";
     }
 
     public static function getInstance()

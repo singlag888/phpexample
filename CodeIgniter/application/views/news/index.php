@@ -9,7 +9,8 @@ foreach ($news as $newsItem) {
         <?php echo $newsItem['text'] ?>
     </div>
     <p>
-        <a href="<?php echo site_url('news/' . $newsItem['slug']); ?>">View Article</a>
+<!--        <a href="--><?php //echo site_url('news/' . $newsItem['slug']); ?><!--">View Article</a>-->
+        <a href="<?php echo site_url('news/view?slug=' . $newsItem['slug']); ?>">View Article</a>
     </p>
     <?php
 }

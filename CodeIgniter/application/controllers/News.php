@@ -31,6 +31,7 @@ class News extends CI_Controller
 
     public function view($slug = null)
     {
+        if (empty($slug)) $slug = $_GET['slug'];
         $data['news_item'] = $this->NewsModel->get_news($slug);
 
         if (empty($data['news_item'])) {
