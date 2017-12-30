@@ -455,7 +455,7 @@ class Movie implements Video{
 
 #[PHP中使用静态方式调用非静态方法的问题](http://www.chanxiaoxi.me/2015/11/18/static-call-non-static-method-in-php/)
 
-phpinfo();
+//phpinfo();
 /*
 $defined = defined('STDIN');
 var_dump($defined);
@@ -490,18 +490,29 @@ fclose($fopen);*/
 //var_dump($ferror);
 
 
+//$file_exists = file_exists(__FILE__);
+//var_dump($file_exists);
+//
+////var_dump(class_exists('SingleDb',true));
+//var_dump(class_exists('SingleDb',false));
+//require_once('appapi/SingleDb.php');
+//
+//class MyIndex
+//{
+//    public function __construct()
+//    {
+//        echo 'construct';
+//    }
+//}
 
-$file_exists = file_exists(__FILE__);
-var_dump($file_exists);
+//[microtime 与 time 函数介绍](http://blog.csdn.net/lizixiang1993/article/details/50917693)
+phpinfo();
+//ini_set('precision',18);
 
-//var_dump(class_exists('SingleDb',true));
-var_dump(class_exists('SingleDb',false));
-require_once('appapi/SingleDb.php');
+$start = microtime();
+sleep(3);
+$end = microtime();
+$dump = number_format($end-$start,4);
+echo 'start:' . $start . 'end:' . $end . ' diff:'.$dump;
 
-class MyIndex
-{
-    public function __construct()
-    {
-        echo 'construct';
-    }
-}
+var_dump(time());

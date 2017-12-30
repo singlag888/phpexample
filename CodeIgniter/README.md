@@ -13,3 +13,13 @@ CodeIgniter
 1. 控制器加载模型、核心类库、辅助函数以及其他所有处理请求所需的资源；
 1. 最后一步，渲染视图并发送至浏览器，如果开启了缓存，视图被会先缓存起来用于 后续的请求。
 
+## PhpStrom使用CI自动提示
+
+1. 下载[phpStorm-CC-Helpers](https://github.com/topdown/phpStorm-CC-Helpers)  
+2. 将`CodeIgniter`文件夹下三个文件放到项目中和`index.php`同一个目录。`DB_active_rec.php`改名为`DB_query_builder.php`,原理未知,和`database`下文件同名。
+3. 将`CI`三个核心文件`system/core/Controller.php`,`system/core/Model.php`和`system/database/DB_query_builder`，右击`Make as Plain Text`。
+4. 在`my_models.php`中添加需要提示的model注释。如`@property NewsModel $NewsModel`。
+
+参考：  
+[配置phpstorm完美支持Codeigniter(CI)代码自动完成(代码提示)](http://blog.csdn.net/wzj0808/article/details/54910024) 
+[PHPStorm配置CodeIgniter的代码自动补全](http://www.taoyuetong.com/phpstorm%E9%85%8D%E7%BD%AEcodeigniter%E7%9A%84%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8/)   
