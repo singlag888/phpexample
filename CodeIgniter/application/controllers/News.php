@@ -24,6 +24,8 @@ class News extends CI_Controller
         $data['news'] = $this->NewsModel->get_news();
         $data['title'] = 'News archive';
 
+        $this->output->cache(1);
+
         $this->load->view('templates/header', $data);
         $this->load->view('news/index', $data);
         $this->load->view('templates/footer');

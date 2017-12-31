@@ -114,7 +114,7 @@ class CI_URI {
 			else
 			{
 				$protocol = $this->config->item('uri_protocol');
-				empty($protocol) && $protocol = 'REQUEST_URI';
+				empty($protocol) && $protocol = 'REQUEST_URI';//? 什么意思？第一个为false，执行第二个；第一个为true，不执行第二个。
 
 				switch ($protocol)
 				{

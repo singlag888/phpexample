@@ -506,13 +506,40 @@ fclose($fopen);*/
 //}
 
 //[microtime 与 time 函数介绍](http://blog.csdn.net/lizixiang1993/article/details/50917693)
-phpinfo();
+//phpinfo();
 //ini_set('precision',18);
 
-$start = microtime();
-sleep(3);
-$end = microtime();
-$dump = number_format($end-$start,4);
-echo 'start:' . $start . 'end:' . $end . ' diff:'.$dump;
+//$start = microtime();
+//sleep(3);
+//$end = microtime();
+//$dump = number_format($end-$start,4);
+//echo 'start:' . $start . 'end:' . $end . ' diff:'.$dump;
+//
+//var_dump(time());
+$protocol;
+$b = empty($protocol) && $protocol = 'REQUEST_URI';
+var_dump($b);
+var_dump($protocol);
+var_dump(empty($protocol) && $protocol = 'REQUEST_URI');
+$extension_loaded = extension_loaded('zlib');
+var_dump($extension_loaded);
+echo 'mbstring.func_overload : ' . ini_get('mbstring.func_overload');
+var_dump(ini_get('mbstring.func_overload'));
 
-var_dump(time());
+$headers = headers_list();
+var_dump($headers);
+for ($i = 0; $i < count($headers); $i++) {
+    $str = $headers[$i];
+    echo $str.'<br/>';
+    if (sscanf($str, 'Content-type: %[^;]', $content_type) === 1) {
+        echo $content_type;
+    }
+}
+echo '<br/>';
+
+$str = "If you divide 4 by 2 you'll get 2";
+$format = sscanf($str,"%s %s %s %d %s %d %s %s %c");
+print_r($format);
+
+$filepath = '/Users/hello/PhpstormProjects/example/CodeIgniter/application/cache/ae9ecdd53d95aa0a0faa8c5ba5131f05';
+var_dump($fp = @fopen($filepath, 'rb'));
