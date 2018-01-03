@@ -603,7 +603,7 @@ abstract class CI_DB_driver {
 	 * @param	string	$sql
 	 * @param	array	$binds = FALSE		An array of binding data
 	 * @param	bool	$return_object = NULL
-	 * @return	mixed
+	 * @return	CI_DB_result|mixed
 	 */
 	public function query($sql, $binds = FALSE, $return_object = NULL)
 	{

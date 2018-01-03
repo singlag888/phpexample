@@ -41,5 +41,17 @@ class NewsModel extends CI_Model
         return $this->db->insert('news', $data);
     }
 
+    public function counts()
+    {
+        return $this->db->count_all('news');
+    }
+
+    public function listNews($limit, $offset)
+    {//select * from
+        $this->db->limit($limit, $offset);
+        $var = $this->db->get('news');
+        return $var->result_array();
+    }
+
 
 }

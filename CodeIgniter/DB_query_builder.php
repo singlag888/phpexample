@@ -1072,7 +1072,7 @@ class CI_DB_active_record extends CI_DB_driver
 	 * @param string $limit  the limit clause
 	 * @param string $offset the offset clause
 	 *
-	 * @return mixed $result
+	 * @return  CI_DB_result|mixed $result
 	 */
 	public function get($table = '', $limit = null, $offset = null)
 	{

@@ -17,6 +17,7 @@ class News extends CI_Controller
         parent::__construct();
         $this->load->model('NewsModel');
         $this->load->helper('url_helper');
+        $this->load->library('pagination');
     }
 
     public function index()
@@ -30,9 +31,37 @@ class News extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('news/index', $data);
         $this->load->view('templates/footer');
+    }
 
-//        $this->exceptions->show_error("","未打开文件",null,null);
-//        log_message();
+    public function pages($offset = 0)
+    {
+//        $this->load->library('upload');
+//        $data['news'] = $this->NewsModel->get_news();
+//        $data['title'] = 'News archive';
+
+        $config['base_url'] = site_url('new/News/pages');
+
+        $config['total_rows'] = $this->NewsModel->counts();
+        $config['per_page'] = 2;
+//        $config['cur_page'] = 3;
+
+        $config['first_link'] = 'First Page';
+        $config['last_link'] = 'Last Page';
+        $config['prev_link'] = 'Preview Page';
+        $config['next_link'] = 'Next Page';
+
+        $this->pagination->initialize($config);
+        $links = $this->pagination->create_links();
+        $data['page'] = $links;
+
+        $limit = $config['per_page'];
+        $data['news'] = $this->NewsModel->listNews($limit, $offset);
+
+
+        $data['title'] = 'News archive';
+        $this->load->view('templates/header', $data);
+        $this->load->view('news/pages', $data);
+        $this->load->view('templates/footer');
     }
 
     public function view($slug = null)
@@ -70,4 +99,6 @@ class News extends CI_Controller
             $this->load->view('news/success');
         }
     }
+
+
 }
