@@ -516,7 +516,7 @@ fclose($fopen);*/
 //echo 'start:' . $start . 'end:' . $end . ' diff:'.$dump;
 //
 //var_dump(time());
-$protocol;
+/*$protocol;
 $b = empty($protocol) && $protocol = 'REQUEST_URI';
 var_dump($b);
 var_dump($protocol);
@@ -542,4 +542,7 @@ $format = sscanf($str,"%s %s %s %d %s %d %s %s %c");
 print_r($format);
 
 $filepath = '/Users/hello/PhpstormProjects/example/CodeIgniter/application/cache/ae9ecdd53d95aa0a0faa8c5ba5131f05';
-var_dump($fp = @fopen($filepath, 'rb'));
+var_dump($fp = @fopen($filepath, 'rb'));*/
+
+//require_once 'oauth.php';
+
