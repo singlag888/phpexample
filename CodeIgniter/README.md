@@ -19,6 +19,7 @@ CodeIgniter
 2. 将`CodeIgniter`文件夹下三个文件放到项目中和`index.php`同一个目录。`DB_active_rec.php`改名为`DB_query_builder.php`,原理未知,和`database`下文件同名。
 3. 将`CI`三个核心文件`system/core/Controller.php`,`system/core/Model.php`和`system/database/DB_query_builder`，右击`Make as Plain Text`。
 4. 在`my_models.php`中添加需要提示的model注释。如`@property NewsModel $NewsModel`。
+5.项目中model可使用`http://***.com/CodeIgniter/index.php/Welcome/listModelFile`方法获取所有`model`类名。
 
 参考：  
 [配置phpstorm完美支持Codeigniter(CI)代码自动完成(代码提示)](http://blog.csdn.net/wzj0808/article/details/54910024) 
