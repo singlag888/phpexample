@@ -546,3 +546,25 @@ var_dump($fp = @fopen($filepath, 'rb'));*/
 
 //require_once 'oauth.php';
 
+function foobar($arg,$arg2){
+    echo __FUNCTION__." got $arg and $arg2 <br/>";
+}
+
+class foo{
+    function bar($arg,$arg2){
+        echo __METHOD__." got $arg and $arg2 <br/>";
+    }
+}
+
+call_user_func_array("foobar",array("one","two"));
+//foobar got one and two
+$foo = new foo();
+//call_user_func_array(array($foo,"bar"),array("three","four"));
+//foo::bar got three and four
+
+//require 'shopImmoc/lib/string.func.php';
+//var_dump(buildRandomString(1));
+//var_dump(buildRandomString(2));
+//var_dump(buildRandomString(3));
+//
+//var_dump(gd_info());
