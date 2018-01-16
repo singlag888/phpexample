@@ -41,6 +41,7 @@ class App extends CI_Controller
 
     public function jsonResult($status = 200, $message = '', $data)
     {
+        header("Content-Type: " . "application/json");
         $result = array('status' => $status,
             'message' => $message,
             'data' => $data);

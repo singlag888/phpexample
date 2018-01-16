@@ -58,5 +58,3 @@ echo 'key:hello value:' . $redis->get('hello');
 ```
 
 
-
-
