@@ -559,6 +559,8 @@ class foo{
 call_user_func_array("foobar",array("one","two"));
 //foobar got one and two
 $foo = new foo();
+
+echo 'hello welcome to https';
 //call_user_func_array(array($foo,"bar"),array("three","four"));
 //foo::bar got three and four
 

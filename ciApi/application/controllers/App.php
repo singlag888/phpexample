@@ -39,6 +39,26 @@ class App extends CI_Controller
         echo $jsonResult;
     }
 
+    public function versionList()
+    {
+        $query = $this->db->query('select * from version limit 1');
+        $row = $query->row();
+
+        $data = array('versionName' => $row->version_name,
+            'url' => $row->url,
+            'forceUpdate' => $row->force_update + 0,
+            'updateContent' => $row->update_content,
+            'publishDate' => $row->publish_date);
+
+        for ($i = 0; $i < 10; $i++) {
+            $result[] = $data;
+        }
+
+        $jsonResult = $this->jsonResult(200, 'success', $result);
+        echo $jsonResult;
+    }
+
+
     public function jsonResult($status = 200, $message = '', $data)
     {
         header("Content-Type: " . "application/json");
