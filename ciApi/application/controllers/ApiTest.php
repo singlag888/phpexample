@@ -214,4 +214,22 @@ class ApiTest extends CI_Controller
         }
         return $msg;
     }
+
+    /**
+     * 随机生成 md5　值
+     */
+    public function md5()
+    {
+        $mt_rand = mt_rand();
+        echo $mt_rand."<br/>";
+        $uniqid = uniqid($mt_rand);
+        echo $uniqid;
+
+        echo '<br/>';
+
+        $md5 = md5($mt_rand);
+        echo $md5;
+
+
+    }
 }
