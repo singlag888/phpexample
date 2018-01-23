@@ -16,13 +16,14 @@ class ApiTest extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('response');
     }
 
     public function postString()
     {
         $this->_checkPostMethod();
         $file_get_contents = file_get_contents("php://input");
-        echo $this->jsonResult(200, "success", $file_get_contents);
+        $this->jsonResult(200, "success", $file_get_contents);
     }
 
     public function postJson()
@@ -46,13 +47,13 @@ class ApiTest extends CI_Controller
             $file_put_contents = file_put_contents($destFile, $file_get_contents, true);
 //            $copy = copy($file_get_contents, $destFile);
             if ($file_put_contents) {
-                echo $this->jsonResult(200, "Success", NIL);
+                $this->jsonResult(200, "Success", NIL);
             } else {
-                echo $this->jsonResult(400, "Upload Failure", NIL);
+                $this->jsonResult(400, "Upload Failure", NIL);
             }
 
         } else {
-            echo $this->jsonResult(400, "Request contentType not allowed", NIL);
+            $this->jsonResult(400, "Request contentType not allowed", NIL);
             exit(1);
         }
     }
@@ -73,7 +74,7 @@ class ApiTest extends CI_Controller
             'int' => $int,
             'float' => $float,
             'double' => $double);
-        echo $this->jsonResult(200, "success", $date);
+        $this->jsonResult(200, "success", $date);
     }
 
     /**
@@ -94,7 +95,7 @@ class ApiTest extends CI_Controller
             'postParam' => $postFile,
             'uploadFileResult' => $uploadFile
         );
-        echo $this->jsonResult(200, 'success', $data);
+        $this->jsonResult(200, 'success', $data);
     }
 
     /**
@@ -111,7 +112,7 @@ class ApiTest extends CI_Controller
         }
         $data['result'] = $result;
         $data['count'] = count($_FILES);
-        echo $this->jsonResult(200, 'success', $data);
+        $this->jsonResult(200, 'success', $data);
     }
 
     /**
@@ -137,11 +138,11 @@ class ApiTest extends CI_Controller
         } elseif ($REQUEST_METHOD == "PATCH") {
             $data = "patch success";
         } else {
-            echo $this->jsonResult(400, "Request method not allowed", NIL);
+            $this->jsonResult(400, "Request method not allowed", NIL);
             exit(1);
         }
 
-        echo $this->jsonResult(200, "success", $data);
+        $this->jsonResult(200, "success", $data);
     }
 
 
@@ -149,7 +150,7 @@ class ApiTest extends CI_Controller
     {
         $REQUEST_METHOD = $_SERVER['REQUEST_METHOD'];
         if ($REQUEST_METHOD == "GET") {
-            echo $this->jsonResult(400, "Request method not allowed", NIL);
+            $this->jsonResult(400, "Request method not allowed", NIL);
             exit(1);
 //            throw new Exception("hello exception");
         } elseif ($REQUEST_METHOD == 'HEAD') {
@@ -159,14 +160,7 @@ class ApiTest extends CI_Controller
 
     public function jsonResult($status = 200, $message = '', $data)
     {
-        header("Content-Type: " . "application/json");
-        $result = array('status' => $status,
-            'message' => $message);
-        if (!empty($data)) {
-            $result['data'] = $data;
-        }
-        $json_encode = json_encode($result);
-        return $json_encode;
+        jsonResponse($status, $message, $data);
     }
 
 
@@ -221,7 +215,7 @@ class ApiTest extends CI_Controller
     public function md5()
     {
         $mt_rand = mt_rand();
-        echo $mt_rand."<br/>";
+        echo $mt_rand . "<br/>";
         $uniqid = uniqid($mt_rand);
         echo $uniqid;
 

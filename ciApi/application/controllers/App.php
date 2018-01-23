@@ -17,6 +17,7 @@ class App extends CI_Controller
     {
         parent::__construct();
         $this->load->database();
+        $this->load->helper('response');
     }
 
 
@@ -28,7 +29,7 @@ class App extends CI_Controller
     {
         $packageName = $this->input->get("name");
         if (empty($packageName)) {
-            echo $this->jsonResult(200, 'params error!', null);
+            jsonResponse(200, 'params error!', null);
             return;
         }
 
@@ -42,11 +43,9 @@ class App extends CI_Controller
                 'forceUpdate' => $row->force_update + 0,
                 'updateContent' => $row->update_content,
                 'publishDate' => $row->publish_date);
-            $jsonResult = $this->jsonResult(200, 'success', $data);
-            echo $jsonResult;
+            jsonResponse(200, 'success', $data);
         } else {
-            echo $this->jsonResult(204, 'not result!', null);
-            return;
+            jsonResponse(204, 'not result!', null);
         }
     }
 
@@ -68,21 +67,8 @@ class App extends CI_Controller
             $result[] = $data;
         }
 
-        $jsonResult = $this->jsonResult(200, 'success', $result);
-        echo $jsonResult;
+        jsonResponse(200, 'success', $result);
     }
 
-
-    public function jsonResult($status = 200, $message = '', $data)
-    {
-        header("Content-Type: " . "application/json");
-        $result = array('status' => $status,
-            'message' => $message);
-        if (!empty($data)) {
-            $result['data'] = $data;
-        }
-        $json_encode = json_encode($result);
-        return $json_encode;
-    }
 
 }
