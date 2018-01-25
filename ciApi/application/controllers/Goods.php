@@ -19,6 +19,9 @@ class Goods extends CI_Controller
         $this->load->database();
     }
 
+    /**
+     * 所有商品分类
+     */
     public function types()
     {
         $result = $this->db->where('enable', 1)
@@ -40,6 +43,11 @@ class Goods extends CI_Controller
         jsonResponse(200, 'success', $data);
     }
 
+    /**
+     * 根据分类type返回商品列表　
+     * @param int $type
+     * @internal param int $type　分类type
+     */
     public function goodsByType($type = 0)
     {
         $this->db->where('enable', 1);
@@ -60,6 +68,7 @@ class Goods extends CI_Controller
                 ->get('img')
                 ->row();
             $imgUrl = $imgData->url;
+            $imgUrl = trim($imgUrl);
 
             $data[] = array(
                 'id' => $val['id'] + 0,
@@ -73,5 +82,44 @@ class Goods extends CI_Controller
         }
         jsonResponse(200, 'success', $data);
     }
+
+    /**
+     * 根据商品id返回商品信息
+     * @param $id 商品id
+     */
+    public function goodsById($id)
+    {
+        if (empty($id)) {
+            jsonResponse(211, 'param error!');
+            return;
+        }
+
+        $result = $this->db->where(array('enable' => 1, 'id' => $id))
+            ->get('goods');
+        $goods = $result->row();
+        if (!$goods) {
+            jsonResponse(211, 'empty data!');
+            return;
+        }
+
+        $imgResult = $this->db->where('goods_id', $id)
+            ->get('img');
+        $imgs = $imgResult->result_array();
+        foreach ($imgs as $item) {
+            $imgUrls[] = trim($item['url']);
+        }
+        $data = array(
+            'id' => $goods->id + 0,
+            'name' => $goods->name,
+            'price' => $goods->price,
+            'salePrice' => $goods->sale_price,
+            'typeId' => $goods->type_id,
+            'desc' => $goods->desc,
+            'imgs' => $imgUrls,
+        );
+        jsonResponse(200, 'success', $data);
+    }
+
+
 
 }
