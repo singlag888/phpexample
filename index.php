@@ -546,17 +546,40 @@ var_dump($fp = @fopen($filepath, 'rb'));*/
 
 //require_once 'oauth.php';
 
-function foobar($arg,$arg2){
-    echo __FUNCTION__." got $arg and $arg2 <br/>";
+
+session_start();
+if (!isset($_SESSION['count'])) {
+    $_SESSION['count'] = 0;
+} else {
+    $_SESSION['count']++;
+}
+//$session_id = session_id();
+//if (!isset($_COOKIE["seCookie"])) {
+//    setcookie("seCookie", $session_id);
+//}
+//if (!isset($_COOKIE['name'])) {
+//    setcookie('name', 'hello');
+//} else {
+//    $str = 'world ' . $_SESSION['count'];
+//    setcookie('name', $str);
+//}
+session_write_close();
+
+
+function foobar($arg, $arg2)
+{
+    echo __FUNCTION__ . " got $arg and $arg2 <br/>";
 }
 
-class foo{
-    function bar($arg,$arg2){
-        echo __METHOD__." got $arg and $arg2 <br/>";
+class foo
+{
+    function bar($arg, $arg2)
+    {
+        echo __METHOD__ . " got $arg and $arg2 <br/>";
     }
 }
 
-call_user_func_array("foobar",array("one","two"));
+call_user_func_array("foobar", array("one", "two"));
 //foobar got one and two
 $foo = new foo();
 
@@ -570,3 +593,6 @@ echo 'hello welcome to https';
 //var_dump(buildRandomString(3));
 //
 //var_dump(gd_info());
+//phpinfo();
+
+echo '<br/>' . $_SESSION['count'] . '<br/>';

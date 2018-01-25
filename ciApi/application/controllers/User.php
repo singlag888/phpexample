@@ -17,6 +17,7 @@ class User extends CI_Controller
         parent::__construct();
         $this->load->database();
         $this->load->helper('response');
+        $this->load->library('session');
     }
 
     public function register()
@@ -104,6 +105,10 @@ class User extends CI_Controller
             jsonResponse(216, 'name or password error!');
             return;
         }
+
+        //登陆后保存session信息
+        $this->session->set_userdata("userId", $row->id);
+
         jsonResponse(200, 'success');
     }
 
