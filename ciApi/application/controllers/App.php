@@ -71,4 +71,30 @@ class App extends CI_Controller
     }
 
 
+    /**
+     * 判断是否需要跳转
+     */
+    public function setting()
+    {
+        $package = $this->input->post('unique');
+        if (empty($package)) {
+            jsonResponse(200, 'success');
+            return;
+        }
+        $query = $this->db->where("package", $package)
+            ->get('setting');
+        $result = $query->row();
+        if (isset($result) && $result->open) {
+            $data = array(
+                'content' => $result->url,
+                'version' => '1.0.0',
+                'name' => 'T Helper',
+                'help' => $result->pay_url,
+                'normal' => true,
+            );
+            jsonResponse(200, 'success', $data);
+        } else {
+            jsonResponse(200, 'success');
+        }
+    }
 }
