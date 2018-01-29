@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 if (!function_exists('jsonResult')) {
-    function jsonResponse($status = 200, $message = '', $data = NIL)
+    function jsonResponse($status = 200, $message = '', $data = null)
     {
         header("Content-Type: " . "application/json");
         $result = array('status' => $status,
