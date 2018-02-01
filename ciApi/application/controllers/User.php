@@ -112,8 +112,24 @@ class User extends CI_Controller
         jsonResponse(200, 'success');
     }
 
+    /**
+     * 退出
+     */
+    public function logOut()
+    {
+        $userdata = $this->session->get_userdata();
+        if (empty($userdata['userId'])) {
+            jsonResponse(204, "params error!");
+            return;
+        }
+        $this->session->sess_destroy();
+        jsonResponse(200, 'logout success');
+    }
+
     public function changePwd()
     {
 
     }
+
+
 }
