@@ -547,12 +547,12 @@ var_dump($fp = @fopen($filepath, 'rb'));*/
 //require_once 'oauth.php';
 
 
-session_start();
-if (!isset($_SESSION['count'])) {
-    $_SESSION['count'] = 0;
-} else {
-    $_SESSION['count']++;
-}
+//session_start();
+//if (!isset($_SESSION['count'])) {
+//    $_SESSION['count'] = 0;
+//} else {
+//    $_SESSION['count']++;
+//}
 //$session_id = session_id();
 //if (!isset($_COOKIE["seCookie"])) {
 //    setcookie("seCookie", $session_id);
@@ -563,25 +563,25 @@ if (!isset($_SESSION['count'])) {
 //    $str = 'world ' . $_SESSION['count'];
 //    setcookie('name', $str);
 //}
-session_write_close();
-
-
-function foobar($arg, $arg2)
-{
-    echo __FUNCTION__ . " got $arg and $arg2 <br/>";
-}
-
-class foo
-{
-    function bar($arg, $arg2)
-    {
-        echo __METHOD__ . " got $arg and $arg2 <br/>";
-    }
-}
-
-call_user_func_array("foobar", array("one", "two"));
-//foobar got one and two
-$foo = new foo();
+//session_write_close();
+//
+//
+//function foobar($arg, $arg2)
+//{
+//    echo __FUNCTION__ . " got $arg and $arg2 <br/>";
+//}
+//
+//class foo
+//{
+//    function bar($arg, $arg2)
+//    {
+//        echo __METHOD__ . " got $arg and $arg2 <br/>";
+//    }
+//}
+//
+//call_user_func_array("foobar", array("one", "two"));
+////foobar got one and two
+//$foo = new foo();
 
 echo 'hello welcome to https';
 //call_user_func_array(array($foo,"bar"),array("three","four"));
@@ -595,4 +595,13 @@ echo 'hello welcome to https';
 //var_dump(gd_info());
 //phpinfo();
 
-echo '<br/>' . $_SESSION['count'] . '<br/>';
+//echo '<br/>' . $_SESSION['count'] . '<br/>';
+
+//获取Push数据内容
+$giteebody = file_get_contents("php://input");
+
+file_put_contents("gitlog.log",$giteebody);
+echo $giteebody;
+//拉取代码
+shell_exec("cd ~/android/MeetStranger/ && git pull");
+
