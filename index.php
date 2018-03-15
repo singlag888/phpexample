@@ -598,10 +598,10 @@ echo 'hello welcome to https';
 //echo '<br/>' . $_SESSION['count'] . '<br/>';
 
 //获取Push数据内容
-$giteebody = file_get_contents("php://input");
+//$giteebody = file_get_contents("php://input");
 
-file_put_contents("gitlog.log",$giteebody);
-echo $giteebody;
+//file_put_contents("gitlog.log",$giteebody);
+//echo $giteebody;
 //拉取代码
-shell_exec("cd ~/android/MeetStranger/ && git pull");
+//shell_exec("cd ~/android/MeetStranger/ && git pull");
 
