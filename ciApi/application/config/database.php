@@ -75,8 +75,8 @@ $query_builder = TRUE;
 
 $hostname = 'localhost';
 $dbname = 'api';
-$username = 'root';
-$password = 'root';
+$username = 'passer';
+$password = 'pass123';
 
 $db['default'] = array(
     'dsn' => 'mysql:host=' . $hostname . ';dbname=' . $dbname,
