@@ -10,6 +10,7 @@
  * php使用oauth
  * 1. php.ini文件中开启 extension=oauth.so
  * 2. 官方示例 http://php.net/manual/zh/oauth.examples.fireeagle.php
+ * phpexample.com/CodeIgniter/index.php/new/TumblrOauth
  */
 class TumblrOauth
 {
