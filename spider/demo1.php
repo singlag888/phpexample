@@ -165,7 +165,6 @@ function newsHtmlContent($newsId)
 }
 
 
-
 newsRecently();
 
 echo 'Please change the file to start collect data:<br/>';
@@ -184,7 +183,7 @@ foreach ($newsCategory as $category) {
         $endTime = microtime(true);
 
         $useTime = (($endTime - $startTime)) . '秒';
-        echo 'Use Time: ' . $useTime;
+        echo '<h3>Use Time: ' . $useTime . '</h3>';
 //        set_time_limit(600 * 60);
     }
 }

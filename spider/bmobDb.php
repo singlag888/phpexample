@@ -29,7 +29,7 @@ include_once 'bmob/lib/BmobBql.class.php';
 function newsAdd($data = array(), $images = array(), $content)
 {
     //1.查询是否保存过数据
-    $bmobObject = new BmobObject("news");
+    $bmobObject = new BmobObject("News");
     $isExits = $bmobObject->get('', array('where={"id":' . $data['id'] . '}', 'limit=5'));
 //    var_dump($isExits);
 
@@ -107,7 +107,7 @@ function uploadFile($url)
  */
 function newsRecently()
 {
-    $bmobObject = new BmobObject('news');
+    $bmobObject = new BmobObject('News');
     $newsRecently = $bmobObject->get('', array('order=-createdAt', 'limit=1'));
 //    var_dump($newsRecently);
     $results = $newsRecently->results;
@@ -115,6 +115,6 @@ function newsRecently()
         echo '还未添加数据';
     } else {
         $new = $results[0];
-        echo '最后添加的记录为: title ' . $new->title . ' createdAt: ' . $new->createdAt.'<br/>';
+        echo '最后添加的记录为: title ' . $new->title . ' createdAt: ' . $new->createdAt . '<br/>';
     }
 }
