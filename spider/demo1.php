@@ -169,13 +169,14 @@ newsRecently();
 
 echo 'Please change the file to start collect data:<br/>';
 
-return;
+//return;
 
 //获取news新闻数据
 $newsCategory = array('csxw', 'lq', 'zq', 'jc');
 
 foreach ($newsCategory as $category) {
     if ($category) {
+        set_time_limit(3600 * 2);//设置执行时间2个小时
 
         $startTime = microtime(true);
         news($category);
@@ -184,7 +185,7 @@ foreach ($newsCategory as $category) {
 
         $useTime = (($endTime - $startTime)) . '秒';
         echo '<h3>Use Time: ' . $useTime . '</h3>';
-//        set_time_limit(600 * 60);
+
     }
 }
 
