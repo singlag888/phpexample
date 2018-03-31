@@ -39,16 +39,15 @@ function encodeUrl($rootUrl, $array)
     return rtrim($rootUrl, '&');
 }
 
-function news($category)
+function news($category, $pageSize)
 {
-
     $rootUrl = "https://m.qmcai.com/support/cmsv2/information/queryContent";
 
     $param = array(
         'command' => 'queryContent',
         'categoryId' => $category,
         'offset' => 0,
-        'size' => 20,
+        'size' => $pageSize,
 //        'platform' => 'html',
 //        'version' => '5.2.50',
 //        'imei' => '862107033239906',
@@ -69,7 +68,6 @@ function news($category)
         $content = rtrim($content, ')');
 
         $content = json_decode($content);
-
 
         $errorCode = $content->errorCode;
         $data = $content->data->dataConfig;
@@ -171,22 +169,22 @@ echo 'Please change the file to start collect data:<br/>';
 
 //return;
 
-//获取news新闻数据
-$newsCategory = array('csxw', 'lq', 'zq', 'jc');
+//获取news新闻数据.每次拉取数据量
+$newsCategory = array('csxw' => 20, 'lq' => 20, 'zq' => 30, 'jc' => 20);
 
-foreach ($newsCategory as $category) {
-    if ($category) {
-        set_time_limit(3600 * 2);//设置执行时间2个小时
+foreach ($newsCategory as $category => $value) {
 
-        $startTime = microtime(true);
-        news($category);
+    set_time_limit(3600 * 2);//设置执行时间2个小时
 
-        $endTime = microtime(true);
+    $startTime = microtime(true);
 
-        $useTime = (($endTime - $startTime)) . '秒';
-        echo '<h3>Use Time: ' . $useTime . '</h3>';
+    news($category, $value);
 
-    }
+    $endTime = microtime(true);
+
+    $useTime = (($endTime - $startTime)) . '秒';
+    echo '<h3>Use Time: ' . $useTime . '</h3>';
+
 }
 
 
