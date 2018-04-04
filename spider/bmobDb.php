@@ -57,7 +57,7 @@ function newsAdd($data = array(), $images = array(), $content)
 
     //4.保存数据
     $data['htmlContent'] = isset($str_replace) ? $str_replace : $htmlContent;
-    $data['imageList'] = array_column($imageUrls, 'newUrl');
+    $data['imageList'] = empty($imageUrls) ? array() : array_column($imageUrls, 'newUrl');
     $data['creator'] = $content->creator;
 //    var_dump($data);
 
@@ -68,7 +68,7 @@ function newsAdd($data = array(), $images = array(), $content)
 //  public 'createdAt' => string '2018-03-24 19:44:11' (length=19)
 //  public 'objectId' => string '3ca159070c' (length=10)
     if (!$res->objectId) {
-        echo '<h2>保存news信息错误</h2>';
+        echo '<h2>保存news信息错误</h2>' . $data['id'] . ' ' . $data['title'];
         var_dump($res);
     } else {
         echo 'Add news :' . $data['id'] . ' ' . $data['title'] . '<br/>';
@@ -116,5 +116,28 @@ function newsRecently()
     } else {
         $new = $results[0];
         echo '最后添加的记录为: title ' . $new->title . ' createdAt: ' . $new->createdAt . '<br/>';
+    }
+}
+
+/**
+ * @param array $data 技巧表保存数据
+ */
+function jiQiaoArticleAdd($data = array())
+{
+    //1.根据文章id查找是否保存过
+    $bmobObject = new BmobObject("JiQiaoArticle");
+    $isExits = $bmobObject->get('', array('where={"id":' . $data['id'] . '}', 'limit=5'));
+    if (!empty($isExits->results)) {
+        echo "jiQiaoArticle 已保存过 id " . $data['id'] . ' title: ' . $data['title'] . '<br/>';
+        return;
+    }
+
+    //2.保存
+    $res = $bmobObject->create($data);
+    if (!$res->objectId) {
+        echo '<h2>保存 jiQiaoArticle 错误</h2>' . $data['id'] . ' ' . $data['title'] . '<br/>';
+        var_dump($res);
+    } else {
+        echo 'Add jiQiaoArticle :' . $data['id'] . ' ' . $data['title'] . '<br/>';
     }
 }

@@ -1,0 +1,75 @@
+爱彩票接口
+https://www.88icp.com/tjssc/shipin
+
+
+开奖倒计时接口
+GET https://app.66icp.com/home/lotterytime HTTP/1.1
+accept: application/json
+x-access-token: 
+Host: app.66icp.com
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Cookie: __cfduid=df2c29270ee1e2b0a928130d49238f4d11522719595
+User-Agent: okhttp/3.6.0
+
+重庆时时彩视频开奖
+https://www.66icp.com/assets/dist/vendor/mobile/cqssc/index.html
+
+新疆时时彩视频开奖
+https://www.66icp.com/assets/dist/vendor/mobile/xjssc/index.html
+
+江苏快3视频开奖
+https://www.66icp.com/assets/dist/vendor/mobile/jsk3/index.html
+
+北京赛车pk10开奖
+https://www.66icp.com/assets/dist/vendor/mobile/pk102/index.html
+
+
+
+资讯技巧
+GET https://app.66icp.com/cqssc/jiqiao?psize=20&pindex=1&PageSize=20&PageIndex=1&keyword= HTTP/1.1
+accept: application/json
+x-access-token: 
+Host: app.66icp.com
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Cookie: __cfduid=df2c29270ee1e2b0a928130d49238f4d11522719595
+User-Agent: okhttp/3.6.0
+
+GET https://app.66icp.com/xjssc/jiqiao?psize=20&pindex=1&PageSize=20&PageIndex=1&keyword= HTTP/1.1
+
+GET https://app.66icp.com/tjssc/jiqiao?psize=20&pindex=1&PageSize=20&PageIndex=1&keyword= HTTP/1.1
+
+category:
+重庆时时彩　cqssc
+新疆时时彩　xjssc
+天津时时彩　tjssc
+江西11选5 jx11x5
+广东11选5  gd11x5
+江苏快3  jsk3
+pc蛋蛋 pcdd
+快乐8 kl8
+圣地彩 sdc
+幸运农场 xync
+幸运飞艇 xyft
+广东快乐10分 gdkl10
+北京赛车pk10  pk10
+
+
+
+
+技巧详情接口
+GET https://app.66icp.com/tjssc/detail?id=8160 HTTP/1.1
+accept: application/json
+x-access-token: 
+Host: app.66icp.com
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Cookie: __cfduid=df2c29270ee1e2b0a928130d49238f4d11522719595
+User-Agent: okhttp/3.6.0
+
+
+
+
+
+
