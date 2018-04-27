@@ -289,7 +289,7 @@ echo 'Please change the file to start collect data:<br/>';
 //return;
 
 //获取news新闻数据.每次拉取数据量
-$newsCategory = array('csxw' => 10, 'lq' => 20, 'zq' => 40, 'jc' => 20);
+$newsCategory = array('csxw' => 10, 'lq' => 10, 'zq' => 20, 'jc' => 10);
 
 foreach ($newsCategory as $category => $value) {
 
@@ -307,7 +307,8 @@ foreach ($newsCategory as $category => $value) {
 }
 
 //技巧攫取数据
-$jiqiaoCategory = array('cqssc', 'xjssc', 'tjssc', 'jx11x5', 'gd11x5', 'jsk3', 'pcdd', 'gdkl10', 'pk10');
+//, 'pcdd', 'gdkl10', 'pk10' 这三个类型不需要
+$jiqiaoCategory = array('cqssc', 'xjssc', 'tjssc', 'jx11x5', 'gd11x5', 'jsk3');
 foreach ($jiqiaoCategory as $category) {
 
     set_time_limit(3600 * 2);//设置执行时间2个小时

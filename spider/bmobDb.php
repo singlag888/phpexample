@@ -83,23 +83,28 @@ function uploadFile($url)
 {
     if (empty($url)) return false;
 
-    $bmobFile = new BmobFile();
-    $resImg = $bmobFile->uploadFile2(basename($url), $url);
+    try {
+        $bmobFile = new BmobFile();
+        $resImg = $bmobFile->uploadFile2(basename($url), $url);
 
-    $fileArray = array("__type" => "File", "group" => $resImg->group, "filename" => $resImg->filename, "url" => $resImg->url);
-    $bmobObject = new BmobObject("file");
-    $resImg = $bmobObject->create(array("file" => $fileArray));
+        $fileArray = array("__type" => "File", "group" => $resImg->group, "filename" => $resImg->filename, "url" => $resImg->url);
+        $bmobObject = new BmobObject("file");
+        $resImg = $bmobObject->create(array("file" => $fileArray));
 
-    $var = $bmobObject->get($resImg->objectId);
+        $var = $bmobObject->get($resImg->objectId);
 
-    $imageUrl = $var->file->url;
-    if (empty($imageUrl)) {
-        echo "<h2>upload File error!</h2> " . $url;
-        print_r($resImg);
-        print_r($var);
+        $imageUrl = $var->file->url;
+        if (empty($imageUrl)) {
+            echo "<h2>upload File error!</h2> " . $url;
+            print_r($resImg);
+            print_r($var);
+        }
+
+        return $imageUrl;
+    } catch (Exception $e) {
+        echo $e;
+        return false;
     }
-
-    return $imageUrl;
 }
 
 /**
@@ -140,4 +145,60 @@ function jiQiaoArticleAdd($data = array())
     } else {
         echo 'Add jiQiaoArticle :' . $data['id'] . ' ' . $data['title'] . '<br/>';
     }
+}
+
+/**
+ * 根据关键词过滤把相关的隐藏下
+ * 六合  赛车 pk10  幸运28 pc蛋蛋 快乐扑克
+ * 包括但不限于   这些 出现这些词就gg
+ */
+function guolu()
+{
+    //数据库保存的有type类型，过滤掉: pcdd,pk10,gdkl10
+    $words = array('六合', '六合彩', '赛车', 'pk10', 'PK10', '幸运28', 'pc蛋蛋', '快乐扑克');
+
+    $bmobObject = new BmobObject("JiQiaoArticle");
+    $data = $bmobObject->get('', array('order-createdAt', 'limit=1000', 'skip=400'));
+
+    $containIs = array();
+
+    if (!empty($data->results)) {
+        $results = $data->results;
+        foreach ($results as $item) {
+
+            $objectId = $item->objectId;
+            $summary = $item->summary;
+            $title = $item->title;
+            $content = $item->content;
+
+            if (contains($words, $title) || contains($words, $summary) || contains($words, $content)) {
+                echo '包含敏感词 ' . $title . '<br/>';
+                $containIs[] = $objectId;
+            }
+        }
+    }
+
+    if (!empty($containIs)) {
+        foreach ($containIs as $objectID) {
+            $update = $bmobObject->update($objectID, array("cfilter" => true));
+            if (!empty($update->updatedAt)) {
+                echo "更新成功　" . $objectID.'<br/>';
+            } else {
+                echo "更新失败　" . $objectID.'<br/>';
+            }
+        }
+    } else {
+        echo "没有数据需要更新";
+    }
+}
+
+function contains($words = array(), $content)
+{
+    foreach ($words as $word) {
+//        echo $content;
+        if (stristr($content, $word)) {
+            return true;
+        }
+    }
+    return false;
 }
