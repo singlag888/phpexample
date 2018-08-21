@@ -605,3 +605,25 @@ echo 'hello welcome to https';
 //拉取代码
 //shell_exec("cd ~/android/MeetStranger/ && git pull");
 
+echo '测试get post java传Null值判断';
+
+echo '<br/>';
+$param = $_GET['param1'];
+echo 'param ' . $param;
+
+
+var_dump($param);
+
+echo '<br/>';
+echo var_dump(empty($param));
+
+echo '<br/>';
+
+$param2 = $_POST['param2'];
+echo 'param2 ' . $param2;
+
+var_dump($param2);
+echo '<br/>';
+echo var_dump(is_null($param2));
+
+echo '<br/>';
