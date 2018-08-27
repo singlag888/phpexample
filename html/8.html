@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Title</title>
+
+</head>
+<body>
+
+<!--
+
+<div class="container">
+
+    <div class="left">
+        The left column.
+        The left column.
+        The left column.
+        The left column.
+        The left column.
+
+    </div>
+
+    <div class="right">
+        The right column.
+        The right column.
+        The right column.
+        The right column.
+        The right column.
+
+    </div>
+
+    <div class="clear">
+
+    </div>
+</div>
+
+<style>
+    div.container {
+        border: 1px solid #000;
+        overflow: auto;
+        width: 100%;
+    }
+
+    div.left {
+        width: 45%;
+        float: left;
+        background: #0f0;
+    }
+
+    div.right {
+        width: 45%;
+        float: right;
+        background: #9ff;
+    }
+
+    /*div.clear{*/
+    /*clear: both;*/
+    /*}*/
+
+</style>-->
+
+
+<!--<div class="box">-->
+
+<!--<div class="column">
+    <span class="item">Item</span><span class="item">Item</span>
+</div>
+
+<div class="column">
+    <span class="item">Item</span><span class="item">Item</span>
+</div>-->
+
+<!--<span class="item">Item</span><span class="item">Item</span><span class="item">Item</span><span-->
+<!--class="item">Item</span><span class="item">Item</span><span class="item">Item</span>-->
+
+<!--<div class="row">
+    <span class="item">Item</span><span class="item">Item</span><span class="item">Item</span>
+</div>
+<div class="row">
+    <span class="item">Item</span>
+</div>
+<div class="row">
+    <span class="item">Item</span><span class="item">Item</span>
+</div>-->
+
+
+<!--<div class="Grid">
+
+    <div class="grid-cell u-full">Grid
+    </div>
+
+</div>
+
+
+<div class="Grid">
+    <div class="grid-cell u-lof2">
+        Grid
+    </div>
+    <div class="grid-cell">Grid</div>
+
+    <div class="grid-cell">Grid</div>
+
+</div>
+
+<div class="Grid">
+    <div class="grid-cell">Grid</div>
+
+    <div class="grid-cell ulof3">Grid</div>
+</div>
+
+<div class="Grid">
+    <div class="grid-cell u-lof4">Grid</div>
+
+    <div class="grid-cell">Grid</div>
+
+    <div class="grid-cell ulof3">Grid</div>
+</div>-->
+
+
+<!--</div>-->
+
+
+<style>
+    .box {
+        width: 150px;
+        height: 150px;
+        border: 1px solid green;
+    }
+
+    .item {
+        /*display: block;*/
+        height: 48px;
+        width: 48px;
+        border: 1px solid red;
+    }
+
+    .grid-cell {
+        border: 1px solid yellow;
+    }
+
+    .Grid {
+        display: flex;
+    }
+
+    .grid-cell {
+        flex: 1;
+    }
+
+    .grid-cell.u-full {
+        flex: 0 0 100%;
+    }
+
+    .grid-cell.u-lof2 {
+        flex: 0 0 50%;
+    }
+
+    .grid-cell.ulof3 {
+        flex: 0 0 33.3333%;
+    }
+
+    .grid-cell.u-lof4 {
+        flex: 0 0 25%;
+    }
+
+</style>
+
+
+<div class="HolyGrail">
+    <header>Header
+
+        <a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">Flex 布局教程：语法篇</a>
+        <br>
+        <a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html">Flex 布局教程：实例篇</a>
+    </header>
+
+    <div class="holyGrail-body">
+        <main class="holyGrail-content">
+            1. 骰子布局
+            2. 网络布局
+                1.基本网格布局
+                2.百分比布局
+            3.圣杯布局
+            4.输入框的布局
+            5.悬挂式布局
+            6.固定的底栏
+            7.流式布局
+        </main>
+
+        <nav class="holyGrail-nav">
+            Nav
+        </nav>
+
+        <aside class="holyGrail-ads">
+            Aside
+        </aside>
+    </div>
+
+    <footer>
+        Footer
+    </footer>
+</div>
+
+<style type="text/css">
+    .HolyGrail {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    header,
+    footer {
+        flex: 0 1 80px;
+    }
+
+    .holyGrail-body {
+        display: flex;
+        flex: 1;
+    }
+
+    .holyGrail-content {
+        flex: 1;
+    }
+
+    .holyGrail-nav,
+    .holyGrail-ads {
+        flex: 0 0 12em;
+    }
+
+    .holyGrail-nav {
+        order: -1;
+    }
+
+    header, footer {
+        background: darkgrey;
+    }
+
+    .holyGrail-nav {
+        background: #9ef;
+    }
+
+    .holyGrail-content {
+        background: #fff;
+    }
+
+    .holyGrail-ads {
+        background: red;
+    }
+
+    @media (max-width: 768px) {
+        .holyGrail-body {
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .holyGrail-nav,
+        .holyGrail-ads,
+        .holyGrail-content {
+            flex: auto;
+        }
+    }
+
+</style>
+
+</body>
+</html>

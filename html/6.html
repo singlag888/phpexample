@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating a CSS layout</title>
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, Verdana, sans-serif;
+            font-size: 12px;
+            color: #666666;
+            background: #FFFFFF;
+            text-align: center;
+        }
+
+        #page-container {
+            width: 760px;
+            margin: auto;
+            /*background: red;*/
+            text-align: left;
+
+        }
+
+        #main-nav {
+            background: red;
+            height: 50px;
+        }
+
+        #main-nav dl {
+            margin: 0;
+            padding: 0;
+        }
+
+        #main-nav dt {
+            float: left;
+        }
+
+        #main-nav dt a {
+            display: block;
+            height: 0px !important;
+            height: 50px;
+            padding: 50px 0 0 0;
+            overflow: hidden;
+            background-repeat: no-repeat;
+        }
+
+        #main-nav dt a:hover {
+            background-position: 0 -50px;
+        }
+
+        #main-nav dt#about,
+        #main-nav dt#about a {
+            width: 71px;
+            background-image: url("img/about_link.gif");
+        }
+
+        #main-nav dt#services,
+        #main-nav dt#services a {
+            width: 84px;
+            background-image: url("img/services_link.gif");
+        }
+
+        #main-nav dt#portfolio,
+        #main-nav dt#portfolio a {
+            width: 95px;
+            background-image: url("img/portfolio_link.gif");
+        }
+
+        #main-nav dt#contact,
+        #main-nav dt#contact a {
+            width: 106px;
+            background-image: url("img/contact_link.gif");
+        }
+
+        body.about dt#about,
+        body.about dt#about a,
+        body.about dt#about a:hover,
+        body.services dt#services,
+        body.services dt#services a,
+        body.services dt#services a:hover,
+        body.portfolio dt#portfolio,
+        body.portfolio dt#portfolio a,
+        body.portfolio dt#portfolio a:hover,
+        body.contact dt#contact,
+        body.contact dt#contact a,
+        body.contact dt#contact a:hover {
+            background-position: 0 -100px;
+        }
+
+        body.about #header {
+            height: 150px;
+            background: #db6d16 url("img/about.jpg");
+        }
+
+        /*IE% Mac Hack \*/
+        #main-nav {
+            padding-left: 11px;
+        }
+
+        /*/
+        #main-nav {
+         padding-left:11px;
+         overflow:hidden;
+        }
+         /* End Hack */
+
+        #header {
+            /*background: blue;*/
+            height: 150px;
+            background: #db6d16 url("img/about.jpg");
+        }
+
+        #sidebar-a {
+            /*background: darkgreen;*/
+            float: right;
+            width: 280px;
+            line-height: 18px;
+        }
+
+        #sidebar-a .padding {
+            padding: 25px;
+        }
+
+        #content {
+            /*background: green;*/
+            margin-right: 280px;
+            line-height: 18px;
+        }
+
+        #content .padding {
+            padding: 25px;
+        }
+
+        #footer {
+            clear: both;
+            /*background: orange;*/
+            height: 66px;
+            font-family: Tahoma, Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            color: #c9c9c9;
+            border-top: 1px solid #efefef;
+            padding: 13px 25px;
+            line-height: 18px;
+        }
+
+        #footer #altnav {
+            width: 350px;
+            float: right;
+            text-align: right;
+            text-align: right;
+            padding-top: 13px;
+        }
+
+        #footer #copyright {
+            padding-top: 13px;
+        }
+
+        #footer a {
+            color: #c9c9c9;
+            text-decoration: none;
+        }
+
+        #footer a:hover {
+            color: #db6d16;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 0;
+            float: right;
+            margin-top: 57px;
+            padding-right: 31px;
+        }
+
+        #content h2 {
+            margin: 0;
+            padding: 0;
+            padding-bottom: 15px;
+        }
+
+        #content p {
+            margin: 0;
+            padding: 0;
+            padding-bottom: 15px;
+        }
+
+    </style>
+</head>
+<body class="about">
+
+<div id="page-container">
+
+    <div id="main-nav">
+        <dl>
+            <dt id="about"><a href="#">About</a></dt>
+            <dt id="services"><a href="#">Services</a></dt>
+            <dt id="portfolio"><a href="#">Portfolio</a></dt>
+            <dt id="contact"><a href="#">Contact US</a></dt>
+        </dl>
+    </div>
+
+    <div id="header">
+        <h1><img src="img/logo_enlighten.gif" alt="Enlighten Designs" width="236" height="36"></h1>
+    </div>
+
+    <div id="sidebar-a">
+
+        <div class="padding">
+            Sidebar A
+
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam gravida enim ut risus.
+
+            Praesent sapien purus, ultrices a, varius ac, suscipit ut, enim. Maecenas in lectus.
+
+            Donec in sapien in nibh rutrum gravida. Sed ut mauris. Fusce malesuada enim vitae lacus
+
+            euismod vulputate. Nullam rhoncus mauris ac metus. Maecenas vulputate aliquam odio.
+
+            Duis scelerisque justo a pede. Nam augue lorem, semper at, porta eget, placerat eget,
+
+            purus. Suspendisse mattis nunc vestibulum ligula. In hac habitasse platea dictumst.
+
+        </div>
+
+    </div>
+
+    <div id="content">
+
+        <div class="padding">
+            <h2><img src="img/about.gif" alt="about" width="54" height="14"></h2>
+            <p><strong>Enlighten Designs</strong> is an Internet solutions provider that specialises in front and back
+                end
+                development. To view some of the web sites we have created view our portfolio.</p>
+            <p>We are currently undergoing a 'face lift', so if you have any questions or would like more information
+                about
+                the services we provide please feel free to contact us.</p>
+
+            <h2><img src="img/contact.gif" alt="contact us" width="98" height="14"></h2>
+            <p>Phone: (07) 853 6060<br/>
+                Fax: (07) 853 6060<br/>
+                Email: <a href="mailto:info@enlighten.co.nz">info@enlighten.co.nz</a><br/>
+                P.O Box: 14159, Hamilton, New Zealand</p>
+            <p><a href="#">More contact information…</a></p>
+
+            From:
+            <a href="http://www.subcide.com/articles/creating-a-css-layout-from-scratch/P1/">Creating a CSS layout from scratch</a>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div id="altnav">
+            <a href="">About</a>
+            <a href="">Services</a>
+            <a href="">Portfolio</a>
+            <a href="">Contact Us</a>
+            <a href="">Terms of Trade</a>
+        </div>
+
+        <div id="copyright">
+            Copyright @ Enlighten Designs
+            <br>
+            Powered by <a href="http://www.enlightenhosting.com/">Enlighten Hosting</a> and
+
+            <a href="http://www.vadmin.co.nz/">Vadmin 3.0 CMS</a>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

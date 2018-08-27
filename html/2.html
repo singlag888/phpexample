@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 62.5%;
+            font-family: "ITC Garamond", Garamond, sans-serif;
+            background: url(content-bg.png) left repeat-y #FFFADA;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-size: 4.0em;
+        }
+
+        p, li {
+            font-size: 1.8em;
+        }
+
+        .clear {
+            clear: both;
+
+        }
+
+        #header {
+            background: #e3da9d;
+            padding: 15px 0 15px 15px;
+        }
+
+        #content {
+            padding: 15px 30px 0 0;
+        }
+
+        #main-content {
+            margin-left: 175px;
+            max-width: 600px;
+        }
+
+        #sidebar {
+            width: 145px;
+            float: left;
+            padding: 0 0 0 15px;
+        }
+
+        #sidebar ul {
+            list-style: inside;
+        }
+
+        #demo-top-bar {
+            text-align: left;
+            background: #222;
+            position: relative;
+            zoom: 1;
+            width: 100% !important;
+            z-index: 6000;
+            padding: 20px 0 20px;
+        }
+
+        #demo-bar-inside {
+            width: 960px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #demo-bar-buttons {
+            padding-top: 10px;
+            float: right;
+            /*color: white;*/
+        }
+
+        #demo-bar-buttons a {
+            font-size: 12px;
+            /*margin-left: 20px;*/
+            color: white;
+            margin: 2px 0;
+            text-decoration: none;
+            font: 14px 'Lucida Grande', Sans-Serif !important;
+        }
+
+        #demo-bar-buttons a:hover,
+        #demo-bar-buttons a:focus {
+            text-decoration: underline;
+        }
+
+        #demo-bar-badge {
+            display: inline-block;
+            width: 302px;
+            padding: 0 !important;
+            margin: 0 !important;
+            background-color: transparent !important;
+        }
+
+        #demo-bar-badge a {
+            display: block;
+            width: 100%;
+            color: white;
+            height: 38px;
+            border-radius: 0;
+            bottom: auto;
+            margin: 0;
+            background-size: 100%;
+            overflow: hidden;
+            /*text-indent: -9999px;*/
+        }
+
+        #demo-bar-badge:before, #demo-bar-badge:after {
+            display: none !important;
+        }
+
+        /*#demo-top-bar {
+            background: #000;
+            color: #fff;
+            padding: 10px 10px 10px 10px;
+        }
+
+        #header {
+            background: #e3da9d;
+            padding: 20px 10px 20px 10px;
+            font-size: 2em;
+        }
+
+        #content {
+            height: 300px;
+        }
+
+        #sidebar {
+            float: left;
+            background: #e3da9d;
+            height: 100%;
+        }
+
+        #main-content {
+            display: inline;
+            position: absolute;
+        }*/
+
+    </style>
+</head>
+<body>
+
+<div id="demo-top-bar">
+
+    <div id="demo-bar-inside">
+
+        <h2 id="demo-bar-badge">
+            <a href="#">CSS-Tricks</a>
+        </h2>
+
+        <div id="demo-bar-buttons">
+            button
+        </div>
+    </div>
+</div>
+
+<div id="header">
+    <h1>Super Simpe Two Column Layout</h1>
+</div>
+
+<div id="content">
+    <div id="sidebar">
+        <ul>
+            <li><a href="">Sidebar stuff.</a></li>
+            <li><a href="">Sidebar stuff.</a></li>
+            <li><a href="">Sidebar stuff.</a></li>
+        </ul>
+    </div>
+
+    <div id="main-content">
+        Dolor consuetudium putamus nunc illum at. Qui vel accumsan zzril odio feugait. Iriure nobis aliquam est qui nam.
+        Est ii ad et quod consuetudium. Eu vero tation placerat illum dolore. Suscipit saepius aliquip commodo erat me.
+        Consequat littera autem anteposuerit ullamcorper dolor. Legunt doming dignissim facer futurum quinta.
+        Consuetudium ad magna tempor ut suscipit. Typi aliquam ex esse quarta qui.
+
+        <a href="">Download this example.</a>
+    </div>
+</div>
+
+<div class="clear"></div>
+
+</body>
+</html>

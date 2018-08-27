@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3 columns layout</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            color: #000;
+            background: #fff;
+        }
+
+        #body {
+            width: 960px;
+            margin: 0 auto;
+            background: #ddd;
+        }
+
+        #header {
+            padding: 10px;
+            background: #fdd;
+        }
+
+        #content-1 {
+            float: left;
+            width: 220px;
+            padding: 10px;
+            background: #bfb;
+        }
+
+        #content-2 {
+            float: right;
+            width: 720px;
+        }
+
+        #content-2-1 {
+            float: left;
+            width: 460px;
+            padding: 10px;
+            background: #ddf;
+        }
+
+        #content-2-2 {
+            width: 220px;
+            padding: 10px;
+            float: right;
+            background: #dff;
+        }
+
+        #footer {
+            clear: both;
+            padding: 10px;
+            background: #ff9;
+        }
+    </style>
+</head>
+<body>
+
+<div id="body">
+    <div id="header">
+        <h1><a href="https://www.456bereastreet.com/archive/201012/how_to_create_a_3-column_layout_with_css/">3-column
+            CSS layout, Step 1</a></h1>
+        <p>See <a href="/archive/201012/how_to_create_a_3-column_layout_with_css/">How to create a 3-column layout with
+            CSS</a> for info on what this is.</p>
+        <p>This is <code>&lt;div id="header"&gt;</code>.</p>
+    </div>
+
+    <div id="main">
+        <div id="content-1">
+            <p>This is <code>&lt;div id="content-1"&gt;</code>.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</p>
+        </div>
+
+        <div id="content-2">
+            <div id="content-2-1">
+                <p>This is <code>&lt;div id="content-2-1"&gt;</code>.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.</p>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                    anim id est laborum.</p>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                    anim id est laborum.</p>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                    anim id est laborum.</p>
+            </div>
+            <div id="content-2-2">
+                <p>This is <code>&lt;div id="content-2-2"&gt;</code>.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.</p>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                    anim id est laborum.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <p>This is <code>&lt;div id="footer"&gt;</code>.</p>
+    </div>
+</div>
+</body>
+</html>
