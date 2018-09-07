@@ -6,44 +6,87 @@
 </head>
 <body>
 
-<div id="navigation">
-    <ul>
-        <li><a href="">Menu</a></li>
-        <li><a href="">Menu</a></li>
-        <li><a href="">Menu</a></li>
-    </ul>
-</div>
-
-<div id="navigation2">
-    <ul>
-        <li><a href="">Menu</a></li>
-        <li><a href="">Menu</a></li>
-        <li><a href="">Menu</a></li>
-    </ul>
-</div>
-
-<div id="content">
-    <h1>Ra ra banjo banjo</h1>
-    <p>Welcome to the Ra ra banjo banjo page. Ra ra banjo banjo. Ra ra banjo banjo. Ra ra banjo banjo.</p>
-    <p>(Ra ra banjo banjo)</p>
-</div>
 
 <style>
-    #navigation {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 200px;
-    }    #navigation2 {
-        position: absolute;
-        top: 0;
-                 right: 0;
-        width: 200px;
+
+    * {
+        padding: 0;
+        margin: 0;
     }
 
-    #content {
-        margin:0 200px;
+    #nav {
+        width: 480px;
+        height: 40px;
+        background-color: #fff000;
+        margin: 0 auto;
     }
+
+    ul li {
+        position: relative;
+        list-style: none;
+        /*display: inline;*/
+        /*height: 40px;*/
+        line-height: 40px;
+        float: left;
+        text-align: center;
+    }
+
+    ul li a {
+        /*float: left;*/
+        height: 40px;
+        display: block;
+        padding: 0 15px;
+        text-align: center;
+        text-decoration: none;
+        color: #000;
+    }
+
+    a:hover {
+        background-color: green;
+    }
+
+    ul li ul {
+        position: absolute;
+        top: 40px;
+        left: 0;
+        display: none;
+    }
+
+    ul li ul li {
+        float: none;
+    }
+
+    ul li ul li a {
+        background-color: yellow;
+        width: 90px;
+        display: block;
+    }
+
+    ul li:hover ul {
+        display: block;
+    }
+
+
 </style>
+
+<div id="nav">
+    <ul>
+        <li><a href="#">首页</a>
+            <ul>
+                <li><a href="#">教程</a></li>
+                <li><a href="#">视频视频视频视频视频视频</a></li>
+                <li><a href="#">文字</a></li>
+                <li><a href="#">语音</a></li>
+            </ul>
+        </li>
+        <li><a href="#">课程大厅</a>
+        </li>
+        <li><a href="#">学习中心</a></li>
+        <li><a href="#">经典案例</a></li>
+        <li><a href="#">关于我们</a></li>
+    </ul>
+
+</div>
+
 </body>
 </html>

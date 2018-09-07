@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery</title>
+    <script src="js/jquery-3.3.1.js"></script>
+</head>
+<body>
+<!--
+<div>
+    <button class="hide">Hide</button>
+    <button class="show">Show</button>
+    <p class="showhide" style="width: 50px;height: 50px; background-color: green">
+        Hello Content
+    </p>
+
+    <form id="form1" action="/login">
+        Name: <input type="text" name="name" class="inputvalue" id="formin1">
+
+        <button type="submit">submit</button>
+    </form>
+
+    <h1>Title 1 </h1>
+
+    <h2>Ttile 2 </h2>
+</div>
+
+<style>
+    .important {
+        font-weight: bold;
+        font-size: xx-large;
+    }
+
+    .blue {
+        color: blue;
+    }
+</style>
+
+<script>
+
+    $(".hide").click(function () {
+        $("h1,h2,p").addClass('blue');
+        $('.show').addClass('important');
+
+        var message = $('.show').css('color');
+        console.log(message);
+        alert(message);
+    })
+
+
+    $(".show").click(function () {
+//        $.get("http://ltsuserapi.ltschats.com/home/getHomeData?show_location=1", function (data, status) {
+//           console.log(status);
+//           console.log(data);
+//        })
+
+        $.post("/html/test.php",
+            {
+                'param1': 'hello',
+                'param2': 'world'
+            },
+            function (data, status) {
+                console.log(status);
+                console.log(data);
+            });
+    })
+
+
+</script>-->
+
+<!--<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>-->
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+
+
+<!--<form action="" class="cmxform" id="commentForm" method="get">
+    <fieldset>
+        <legend>请输入您的名字，邮箱，URL，备注。</legend>
+        <p>
+            <label for="cname">Name(必须，最少两个字母)</label>
+            <input type="text" id="cname" name="name" minlength="2" required>
+        </p>
+
+        <p>
+            <label for="cemail">E-Mail(必填)</label>
+            <input id="cemail" name="email" type="email" required/>
+        </p>
+
+        <p>
+            <label for="curl">URL(可选)</label>
+            <input type="url" id="curl" name="url">
+        </p>
+
+        <p>
+            <label for="ccomment">备注（必须)</label>
+            <textarea name="comment" id="ccomment" cols="30" rows="10" required></textarea>
+        </p>
+
+        <p>
+            <input type="submit" class="submit" value="submit">
+
+            <input type="submit" value="Submit2" class="submit">
+        </p>
+    </fieldset>
+</form>-->
+
+
+<!--<form action="" class="cmxform" id="signupForm" method="get">
+    <fieldset>
+        <legend>验证完整的表单</legend>
+        <p>
+            <label for="firstname">名字</label>
+            <input type="text" id="firstname" name="firstname">
+        </p>
+        <p>
+            <label for="lastname">姓氏</label>
+            <input type="text" id="lastname" name="lastname">
+        </p>
+        <p>
+            <label for="username">用户名</label>
+            <input type="text" id="username" name="username">
+        </p>
+
+        <p>
+            <label for="password">密码</label>
+            <input type="password" id="password" name="password">
+        </p>
+
+        <p>
+            <label for="confirm_password">验证密码</label>
+            <input type="password" id="confirm_password" name="confirm_password">
+        </p>
+
+        <p>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+        </p>
+
+        <p>
+            <label for="agree">请同意我们的声明</label>
+            <input type="checkbox" class="checkbox" id="agree" name="agree">
+        </p>
+
+        <p>
+            <label for="newsletter">我乐意接收新的信息</label>
+            <input type="checkbox" class="checkbox" name="newsletter" id="newsletter">
+        </p>
+
+        <fieldset id="newsletter_topics">
+            <legent>
+                主题 (至少选择两个) - 注意：如果没有勾选“我乐意接收新信息”以下选项会隐藏，但我们这里作为演示让它可见
+            </legent>
+            <label for="topic_marketflash">
+                <input type="checkbox" id="topic_marketflash" value="marketflash" name="topic">Marketflash
+            </label>
+
+            <label for="topic_fuzz">
+                <input type="checkbox" id="topic_fuzz" value="fuzz" name="topic">Latest fuzz
+            </label>
+
+            <label for="topic_digester">
+                <input type="checkbox" id="topic_digester" value="digester" name="topic">Mailing list digester
+            </label>
+
+            <label for="topic" class="error">
+                Please select at least two topics you'd like to receive.
+            </label>
+
+        </fieldset>
+
+        <p>
+            <input type="submit" class="submit" value="提交">
+        </p>
+
+    </fieldset>
+</form>
+
+<script>
+    $().ready(function () {
+        $("#signupForm").validate({
+            rules: {
+                firstname: "required",
+                lastname: "required",
+                username: {
+                    required: true,
+                    minlength: 2
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                confirm_password: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#password"
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                topic: {
+                    required: '#newletter:checked',
+                    minlength: 2
+                },
+                agree: 'required'
+            },
+            messages: {
+                firstname:"请输入您的名字",
+                lastname:"请输入您的姓氏",
+                username:{
+                    required:"请输入用户名",
+                    minlength:"用户名必需由两个字母组成"
+                },
+                password:{
+                    required:"请输入密码",
+                    minlength:"密码长度不能小于 5 个字母"
+                }
+            }
+        });
+    })
+</script>-->
+
+<style>
+    .cmxform fieldset p.error label {
+        color: red;
+    }
+
+    form.cmxform {
+        width: 30em;
+    }
+
+    form.cmxform label.error {
+        display: block;
+        margin-left: 1em;
+        width: auto;
+    }
+
+
+</style>
+<div id="main">
+    <form action="" method="get" class="cmxform" id="form1">
+        <fieldset>
+            <legend>登陆框</legend>
+            <p>
+                <label>用户名</label>
+                <input type="text" name="user" title="请输入用户名" required minlength="3">
+            </p>
+            <p>
+                <label>密码</label>
+                <input type="password" maxlength="12" name="password" title="请输入密码" required minlength='5' maxlength="12">
+            </p>
+
+            <div class="error">
+
+            </div>
+
+            <p>
+                <input type="submit" class="submit" value="Loginin">
+            </p>
+        </fieldset>
+    </form>
+</div>
+
+<script>
+    $().ready(function () {
+        $("form1").validate({
+            errorLabelContainer:$("#form1 div.error")
+        });
+
+        var container = $('div.container');
+
+    })
+</script>
+
+</body>
+</html>

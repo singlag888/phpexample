@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5</title>
+</head>
+<body>
+<canvas id="myCanvas" width="200" height="100" style="border: 1px solid #000000;">
+
+</canvas>
+
+<img id="imgcan" src="img/img_nature_wide.jpg" alt="" width="30px" height="10px">
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="190">
+    <polygon points="100,10 40,180 190,60 10,60 160,180"
+             style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;">
+</svg>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+
+    <mrow>
+        <msup>
+            <mi>a</mi>
+            <mn>2</mn>
+        </msup>
+        <mo>+</mo>
+
+        <msup>
+            <mi>b</mi>
+            <mn>2</mn>
+        </msup>
+        <mo>=</mo>
+
+        <msup>
+            <mi>c</mi>
+            <mn>2</mn>
+        </msup>
+    </mrow>
+
+</math>
+
+<div>
+</div>
+<br>
+
+<p>title</p>
+
+<style>
+    #div1 {
+        width: 350px;
+        height: 70px;
+        padding: 10px;
+        border: 1px solid #aaaaaa;
+    }
+</style>
+
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("Text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("Text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+</script>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+
+<img src="img/logo_enlighten.gif" alt="" id="drag1" draggable="true" ondragstart="drag(event)">
+
+
+<script>
+    var can = document.getElementById('myCanvas');
+    var ctx = can.getContext('2d');
+    //    ctx.fillStyle = "#FF0000";
+    //    ctx.fillRect(0,0,150,75);
+    //    ctx.fillStyle = "#eaaabb";
+    //    ctx.fillText("hello",150,78);
+
+    //    ctx.moveTo(0, 0);
+    //    ctx.lineTo(180, 80);
+    //    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+    ctx.stroke();
+
+    var grd = ctx.createLinearGradient(0, 0, 200, 0);
+    grd.addColorStop(0, 'red');
+    grd.addColorStop(1, 'white');
+
+    ctx.fillStyle = grd;
+    ctx.fillRect(10, 10, 150, 80);
+    //    ctx.arc(95, 50, 35, 0, 2 * Math.PI);
+
+    var imgCan = document.getElementById('imgcan');
+    ctx.drawImage(imgCan, 10, 10);
+
+</script>
+
+
+<h3>Geolocation</h3>
+
+
+<div id="geolocation">aaa</div>
+
+<script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            var con = document.getElementById("geolocation");
+            con.innerHTML = "start loc....";
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            alert("hello ");
+            document.getElementById("geolocation").innerHTML = "该浏览器不支持获取地理位置"
+        }
+    }
+
+    function showPosition(pos) {
+        var con = document.getElementById("geolocation");
+        con.innerHTML = "纬度: " + pos.coords.latitude + "<br>" +
+            "纬度: " + pos.coords.longitude;
+
+        var latlon = pos.coords.latitude + "," + pos.coords.longitude;
+        var imgurl = "http://maps.googleapis.com/maps/api/staticmap?center="
+            + latlon + "&zoom=14&size=400x300&sensor=false";
+        con.innerHTML += "<img src='" + imgurl + "'>";
+    }
+
+    function showError(error) {
+        var x = document.getElementById("geolocation");
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                x.innerHTML = "用户拒绝对获取地理位置的请求。"
+                break;
+            case error.POSITION_UNAVAILABLE:
+                x.innerHTML = "位置信息是不可用的。"
+                break;
+            case error.TIMEOUT:
+                x.innerHTML = "请求用户地理位置超时。"
+                break;
+            case error.UNKNOWN_ERROR:
+                x.innerHTML = "未知错误。"
+                break;
+        }
+    }
+
+    getLocation();
+</script>
+
+
+<h2>new input type</h2>
+
+choose your favorite color:
+<input type="color" name="favcolor">
+
+choose date:
+
+<input type="date" name="date">
+
+choose time:
+<input type="datetime-local" name="datetime">
+
+
+input email:
+<input type="email" name="email">
+
+input month
+
+<input type="month" name="bodymonth">
+<br>
+<input type="range" name="points" min="5" max="10" step="1">
+
+<br>
+
+<h3>Web Workers</h3>
+<div id="workerid">tips:</div>
+
+<button onclick="startWorker()">start</button>
+<button onclick="stopWorker()">Stop</button>
+<div id="workercount"></div>
+<script>
+    var worker;
+
+    if (typeof(Worker) !== 'undefined') {
+        document.getElementById("workerid").innerHTML += "support worker";
+    } else {
+        document.getElementById("workerid").innerHTML += "not support worker";
+    }
+
+    function startWorker() {
+        if (typeof(Worker) !== 'undefined') {
+            worker = new Worker("js/demo_worker.js");
+            worker.onmessage = function (p1) {
+                document.getElementById("workercount").innerHTML = p1.data;
+            }
+        }
+    }
+
+    function stopWorker() {
+        worker.terminate();
+        worker = undefined;
+    }
+
+</script>
+
+
+<h3>服务器发送事件　Server-Sent Events</h3>
+<a href="http://www.ruanyifeng.com/blog/2017/05/server-sent_events.html">Server-Sent Events 教程</a>
+<div id="servereventtips">tips:</div>
+
+<button onclick="getdata()">Start</button>
+
+<button onclick="closeServer()">Stop</button>
+<div id="servereventdata">data:</div>
+<script>
+
+    var eventSource;
+
+    if (typeof(EventSource) !== "undefined") {
+        document.getElementById("servereventtips").innerHTML += "浏览器支持 Server-Sent";
+    } else {
+        document.getElementById("servereventtips").innerHTML += "浏览器不支持 Server-Sent";
+    }
+
+    function getdata() {
+        eventSource = new EventSource("php/serversenttest.php");
+
+        eventSource.onopen = function (event) {
+            document.getElementById("servereventtips").innerHTML += " onopen " + eventSource.readyState + "  ";
+            ;
+//            console.log(eventSource);
+//            console.log(event);
+        };
+
+        eventSource.onmessage = function (event) {
+            document.getElementById("servereventdata").innerHTML += event.data + "<br/>";
+//            console.log(eventSource);
+//            console.log(event);
+        };
+        //自定义事件
+        eventSource.foo = function (event) {
+            document.getElementById("servereventdata").innerHTML += "foo event: " + event.data + "<br/>";
+        };
+
+        eventSource.onerror = function (event) {
+            document.getElementById("servereventtips").innerHTML += " onerror " + eventSource.readyState + "  ";
+//            console.log(eventSource);
+//            console.log(event);
+        };
+    }
+
+    function closeServer() {
+        eventSource.close();
+    }
+
+</script>
+
+</body>
+</html>
