@@ -1,103 +1,137 @@
-HTTP/1.1 403 Forbidden
-Date: Wed, 04 Apr 2018 12:05:16 GMT
-Content-Type: text/html; charset=UTF-8
-Transfer-Encoding: chunked
-Connection: keep-alive
-Set-Cookie: __cfduid=deb7eb5f02ebbe0f45b05382f6a34c2ec1522843516; expires=Thu, 04-Apr-19 12:05:16 GMT; path=/; domain=.66icp.com; HttpOnly
-Cache-Control: max-age=15
-Expires: Wed, 04 Apr 2018 12:05:31 GMT
-X-Frame-Options: SAMEORIGIN
-Expect-CT: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-Server: cloudflare
-CF-RAY: 4063a46aaf74a91e-SIN
-
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en-US"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en-US"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en-US"> <!--<![endif]-->
+<html lang="en">
 <head>
-    <title>Attention Required! | Cloudflare</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
-    <meta name="robots" content="noindex, nofollow" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-    <link rel="stylesheet" id="cf_styles-css" href="/cdn-cgi/styles/cf.errors.css" type="text/css" media="screen,projection" />
-    <!--[if lt IE 9]><link rel="stylesheet" id='cf_styles-ie-css' href="/cdn-cgi/styles/cf.errors.ie.css" type="text/css" media="screen,projection" /><![endif]-->
-    <style type="text/css">body{margin:0;padding:0}</style>
-
-
-    <!--[if lte IE 9]><script type="text/javascript" src="/cdn-cgi/scripts/jquery.min.js"></script><![endif]-->
-    <!--[if gte IE 10]><!--><script type="text/javascript" src="/cdn-cgi/scripts/zepto.min.js"></script><!--<![endif]-->
-    <script type="text/javascript" src="/cdn-cgi/scripts/cf.common.js"></script>
-
+    <meta charset="UTF-8">
+    <title>Title</title>
 
 
 </head>
 <body>
-<div id="cf-wrapper">
-    <div class="cf-alert cf-alert-error cf-cookie-error" id="cookie-alert" data-translate="enable_cookies">Please enable cookies.</div>
-    <div id="cf-error-details" class="cf-error-details-wrapper">
-        <div class="cf-wrapper cf-header cf-error-overview">
-            <h1 data-translate="block_headline">Sorry, you have been blocked</h1>
-            <h2 class="cf-subheadline"><span data-translate="unable_to_access">You are unable to access</span> 66icp.com</h2>
-        </div><!-- /.header -->
+<!--
+<div id="div1" style="width: 300px;height: 300px; background: pink;">
+    div1
+    <div id="div2" style="width: 200px;height: 200px; background: yellow;">div2</div>
+</div>
 
-        <div class="cf-section cf-highlight">
-            <div class="cf-wrapper">
-                <div class="cf-screenshot-container cf-screenshot-full">
+<script>
+    let div1 = document.getElementById('div1');
+    let div2 = document.getElementById("div2");
+    //    div1.onclick = function () {
+    //        alert("1");
+    //    };
+    //    div2.onclick = function () {
+    //        alert("2");
+    //    };
 
-                    <span class="cf-no-screenshot error"></span>
+    div1.addEventListener('click', function (e) {
+        alert("div1 click");
+//        e.stopPropagation();
+    }, false);
 
-                </div>
-            </div>
-        </div><!-- /.captcha-container -->
+    div2.addEventListener('click', function (e) {
+//        e.preventDefault();
+        e.stopPropagation();
+        alert("div2 click");
+    }, false);
 
-        <div class="cf-section cf-wrapper">
-            <div class="cf-columns two">
-                <div class="cf-column">
-                    <h2 data-translate="blocked_why_headline">Why have I been blocked?</h2>
-
-                    <p data-translate="blocked_why_detail">This website is using a security service to protect itself from online attacks. The action you just performed triggered the security solution. There are several actions that could trigger this block including submitting a certain word or phrase, a SQL command or malformed data.</p>
-                </div>
-
-                <div class="cf-column">
-                    <h2 data-translate="blocked_resolve_headline">What can I do to resolve this?</h2>
-
-                    <p data-translate="blocked_resolve_detail">You can email the site owner to let them know you were blocked. Please include what you were doing when this page came up and the Cloudflare Ray ID found at the bottom of this page.</p>
-                </div>
-            </div>
-        </div><!-- /.section -->
-
-        <div class="cf-error-footer cf-wrapper">
-            <p>
-                <span class="cf-footer-item">Cloudflare Ray ID: <strong>4063a46aaf74a91e</strong></span>
-                <span class="cf-footer-separator">&bull;</span>
-                <span class="cf-footer-item"><span>Your IP</span>: 103.227.174.43</span>
-                <span class="cf-footer-separator">&bull;</span>
-                <span class="cf-footer-item"><span>Performance &amp; security by</span> <a href="https://www.cloudflare.com/5xx-error-landing?utm_source=error_footer" id="brand_link" target="_blank">Cloudflare</a></span>
-
-                <span class="cf-footer-separator">&bull;</span>
-                <span class="cf-footer-item">
-      <select id="lang-selector">
-        <option value="">Select a Language</option>
-        <option value="en">English</option>
-        <option value="es">Español</option>
-      </select>
-    </span>
-
-            </p>
-        </div><!-- /.error-footer -->
+</script>-->
 
 
-    </div><!-- /#cf-error-details -->
-</div><!-- /#cf-wrapper -->
+<div id="parent">
+    父元素
+    <div id="child">
+        子元素
+    </div>
+</div>
 
-<script type="text/javascript">
-    window._cf_translation = {};
-    window._cf_translation.locale = 'en';
-    window._cf_translation.blobs = {};
+<style>
+
+    #parent {
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        line-height: 3;
+        background: green;
+    }
+
+    #child {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        background: orange;
+    }
+
+</style>
+<script>
+    let parent = document.getElementById('parent');
+    let child = document.getElementById('child');
+
+    document.body.addEventListener('click', function (e) {
+         console.log('click-body');
+     }, false);
+
+     parent.addEventListener('click', function (e) {
+         console.log('click-parent-事件冒泡');
+     }, false);
+
+     parent.addEventListener('click', function (e) {
+         console.log('click-parent-事件捕获');
+     }, true);
+
+     child.addEventListener('click', function (e) {
+         console.log('click-child');
+//         e.stopPropagation();
+     }, false);
+
+    //    parent.onclick = function (e) {
+    //        if (e.target.id == 'child') {
+    //            console.log('点击了child元素');
+    //        }
+    //    }
+//    parent.addEventListener('mouseover', function (e) {
+////        if (e.target.id == 'parent') {
+////            console.log('parent mousevoer');
+////        }
+////        console.log(e.target.id);
+//
+////        e.stopPropagation();
+////        e = e || window.event;
+////        if (fixedMouse(e, parent)) {
+////            console.log('parent mouseover');
+////        }
+//    }, false);
+//    parent.addEventListener('mouseout', function (e) {
+////        if (e.target.id == 'parent') {
+////        console.log('parent mouseout');
+//////        }
+////        console.log(e.target.id);
+////        e.stopPropagation();
+//
+////        e = e || window.event;
+////        if (fixedMouse(e, parent)) {
+////            console.log('parent mouseout');
+////        }
+//    }, false);
+
+
+    function contains(p, c) {
+        return p.contains ?
+            p != c && p.contains(c) : !!(p.compareDocumentPosition(c) & 16);
+    }
+
+    function fixedMouse(e, target) {
+        e = e || window.event;
+        var related,
+            type = e.type.toLowerCase();//这里获取事件名字
+        if (type == 'mouseover') {
+            related = e.relatedTarget || e.fromElement
+        } else if (type = 'mouseout') {
+            related = e.relatedTarget || e.toElement
+        } else return true;
+        return related && related.prefix != 'xul' && !contains(target, related) && related !== target;
+    }
+
+
 </script>
 
 </body>

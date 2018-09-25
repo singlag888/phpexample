@@ -2,9 +2,300 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>js</title>
+    <script>
+        function log(string) {
+            console.log(string);
+        }
+    </script>
 </head>
 <body>
-$END$
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript#Object-oriented_programming">JavaScript面向对象简介</a>
+
+
+<font color="red">在线客服</font>
+
+<span style="color: red;">在线客服</span>
+<script>
+
+    //    'use strict';
+
+    /*function Person(firstName) {
+        this.firstName = firstName;
+//        log("Person instantiated");
+    }
+
+    Person.prototype.sayHello = function () {
+        log("Hello, I'm " + this.firstName)
+    }
+
+    var person1 = new Person("alice");
+    var person2 = new Person('bob');
+    var helloFunction = person1.sayHello;
+
+//    log('person1 is ' + person1.firstName)
+//    log('person2 is ' + person2.firstName)
+    person1.sayHello();
+    person2.sayHello();
+    helloFunction();
+
+    log(helloFunction === person1.sayHello);
+    log(helloFunction === Person.prototype.sayHello);
+    helloFunction.call(person2);*/
+
+
+    function Person(firstName) {
+        this.firstName = firstName;
+    }
+
+    Person.prototype.walk = function () {
+        log("I am walking!")
+    }
+
+    Person.prototype.sayHello = function () {
+        log("Hello, I'm " + this.firstName)
+    }
+
+    function Student(firstName, subject) {
+        Person.call(this, firstName)
+        this.subject = subject
+    }
+
+    //    Student.prototype = new Person();
+    //    Student.prototype = Object.create(Person.prototype);
+    Student.prototype = createObject(Person.prototype);
+
+    function createObject(proto) {
+        function ctor() {
+        };
+
+        ctor.prototype = proto;
+        return new ctor();
+    }
+
+
+    Student.prototype.constructor = Student;
+
+    Student.prototype.sayHello = function () {
+        log("Hello, I'm " + this.firstName + " . I'm studying " + this.subject)
+    }
+
+    Student.prototype.sayGoodBye = function () {
+        log("Goodbye!")
+    }
+
+    var student1 = new Student("Janet", "Applied Physics");
+    student1.sayHello();
+    student1.walk();
+    student1.sayGoodBye();
+
+    log(student1 instanceof Person);
+    log(student1 instanceof Student);
+
+    log(student1)
+    log(student1.firstName)
+
+    log("================")
+
+    var foo = function () {
+
+    }
+
+    log('foo is a Function: ' + (foo instanceof Function))
+    log('foo.prototype is an object: ' + (foo.prototype instanceof Object))
+
+    log('===================')
+
+    var o = {a: 1};
+    log(o.__proto__)
+    log(Object.prototype.__proto__)
+
+    var a = ['yo', 'whadup', '?'];
+
+    log(a)
+
+    function f() {
+        return 2;
+    }
+
+    log(Function.prototype);
+
+    log('---------------------')
+
+    function Graph() {
+        this.vertices = [];
+        this.edges = [];
+    }
+
+    Graph.prototype = {
+        addVertex: function (v) {
+            this.vertices.push(v);
+        }
+    }
+
+    var g = new Graph();
+    log(g)
+    log(g.__proto__)
+
+    log('--------------')
+
+    var aa = {a: 1};
+
+    var bb = Object.create(aa);
+    log(bb);
+    log(bb.__proto__)
+    log(bb.a);
+
+    'use strict';
+
+    class Polygon {
+        constructor(height, width) {
+            this.height = height;
+            this.width = width;
+        }
+    }
+
+    class Square extends Polygon {
+        constructor(sideLenght) {
+            super(sideLenght, sideLenght);
+        }
+
+        get area() {
+            return this.height * this.width;
+        }
+
+        set sideLength(newLength) {
+            this.width = newLength;
+            this.height = newLength;
+        }
+    }
+
+    let square = new Square(2);
+    log(square);
+
+</script>
+
+
+<script>
+    //    function Person() {
+    //        log("person constructor run")
+    //    }
+    //    Person.prototype.name = 'Kevin';
+    //
+    //    log(Person.prototype);
+    //
+    //    let person1 = new Person();
+    ////    log(person1.name);
+    //    log(person1.__proto__);
+
+
+    let obj = new Object();
+    obj.name = 'Kevin';
+    log(obj.name);
+
+    log(Object.prototype.__proto__);
+
+</script>
+
+<script>
+    log('---=======-----------')
+
+    const person = {
+        isHuman: false,
+        printIntroduction: function () {
+            console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+        }
+    };
+
+    log(person);
+
+    const me = Object.create(person.__proto__);
+
+    log(me)
+
+    //    me.name = "Matthew"; // "name" is a property set on "me", but not on "person"
+    //    me.isHuman = true; // inherited properties can be overwritten
+    //
+    //    me.printIntroduction();
+    // expected output: "My name is Matthew. Am I human? true"
+
+
+</script>
+
+<script>
+    log('----------')
+
+    function Shape() {
+        this.x = 0;
+        this.y = 0;
+    }
+
+    Shape.prototype.move = function (x, y) {
+        this.x += x;
+        this.y += y;
+        log("Shape moved.");
+    }
+
+    function Rectangle() {
+        Shape.call(this);
+    }
+
+    Rectangle.prototype = Object.create(Shape.prototype);
+    Rectangle.prototype.constructor = Rectangle;
+
+
+</script>
+
+<script>
+    var o;
+    o = Object.create(null);
+
+    o = {};
+    o = Object.create(Object.prototype);
+
+    o = Object.create(Object.prototype, {
+        foo: {
+            writable: true,
+            configurable: true,
+            value: 'hello'
+        },
+        bar: {
+            configurable: false,
+            get: function () {
+                return 10;
+            },
+            set: function (value) {
+                log('Setting o.bar to ' + value);
+            }
+        }
+    });
+
+    log(o)
+    o.foo = 'world';
+    o.bar = 'java world';
+    log(o);
+
+
+    o = Object.create({}, {p: {value: 42}});
+    o.p = 24;
+    log(o.p);
+
+    o.q = 12;
+    for (var prop in o) {
+        log(prop);
+    }
+    log(o);
+
+    o2 = Object.create({}, {
+        p: {
+            value: 42,
+            writable: true,
+            enumerable: true,
+            configurable: true
+        }
+    });
+
+</script>
+
 </body>
 </html>

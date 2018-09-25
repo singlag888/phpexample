@@ -3,90 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Test Page</title>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
 
-
 <style>
-
-    * {
-        padding: 0;
-        margin: 0;
+    span {
+        width: 200px;
     }
 
-    #nav {
-        width: 480px;
-        height: 40px;
-        background-color: #fff000;
-        margin: 0 auto;
+    a {
+        width: 100%;
     }
 
-    ul li {
-        position: relative;
-        list-style: none;
-        /*display: inline;*/
-        /*height: 40px;*/
-        line-height: 40px;
-        float: left;
-        text-align: center;
+    div.parent {
+        width: 500px;
+        /*height: 300px;*/
+        background: #ccc;
     }
 
-    ul li a {
-        /*float: left;*/
-        height: 40px;
-        display: block;
-        padding: 0 15px;
-        text-align: center;
-        text-decoration: none;
-        color: #000;
+    div.son {
+        /*width: 100%;*/
+        /*height: 200px;*/
+        padding:20px 20px ;
+        margin:20px 20px;
+        background: green;
     }
-
-    a:hover {
-        background-color: green;
-    }
-
-    ul li ul {
-        position: absolute;
-        top: 40px;
-        left: 0;
-        display: none;
-    }
-
-    ul li ul li {
-        float: none;
-    }
-
-    ul li ul li a {
-        background-color: yellow;
-        width: 90px;
-        display: block;
-    }
-
-    ul li:hover ul {
-        display: block;
-    }
-
-
 </style>
 
-<div id="nav">
-    <ul>
-        <li><a href="#">首页</a>
-            <ul>
-                <li><a href="#">教程</a></li>
-                <li><a href="#">视频视频视频视频视频视频</a></li>
-                <li><a href="#">文字</a></li>
-                <li><a href="#">语音</a></li>
-            </ul>
-        </li>
-        <li><a href="#">课程大厅</a>
-        </li>
-        <li><a href="#">学习中心</a></li>
-        <li><a href="#">经典案例</a></li>
-        <li><a href="#">关于我们</a></li>
-    </ul>
-
+<div class="parent">
+    <div class="son">父子元素width关系</div>
 </div>
-
 </body>
 </html>
