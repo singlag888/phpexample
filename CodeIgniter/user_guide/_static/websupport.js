@@ -175,7 +175,7 @@
   }
 
   /**
-   * Perform an ajax request to get comments for a node
+   * Perform an ajax request to get comments for a nodejs
    * and insert the comments into the comments tree.
    */
   function getComments(id) {
@@ -214,7 +214,7 @@
    * Add a comment via ajax and insert the comment into the comment tree.
    */
   function addComment(form) {
-    var node_id = form.find('input[name="node"]').val();
+    var node_id = form.find('input[name="nodejs"]').val();
     var parent_id = form.find('input[name="parent"]').val();
     var text = form.find('textarea[name="comment"]').val();
     var proposal = form.find('textarea[name="proposal"]').val();
@@ -715,7 +715,7 @@
         <textarea name="proposal" id="pt<%id%>" cols="80"\
                   spellcheck="false"></textarea>\
         <input type="submit" value="Add comment" />\
-        <input type="hidden" name="node" value="<%id%>" />\
+        <input type="hidden" name="nodejs" value="<%id%>" />\
         <input type="hidden" name="parent" value="" />\
       </form>\
       </div>\
@@ -775,7 +775,7 @@
           <input type="submit" value="Add reply" />\
           <input type="button" value="Cancel" />\
           <input type="hidden" name="parent" value="<%id%>" />\
-          <input type="hidden" name="node" value="" />\
+          <input type="hidden" name="nodejs" value="" />\
         </form>\
       </div>\
     </li>';

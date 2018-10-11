@@ -5337,7 +5337,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		//We have to refresh the items data once first
 		this._refreshItems( event );
 
-		//Find out if the clicked node (or one of its parents) is a actual item in this.items
+		//Find out if the clicked nodejs (or one of its parents) is a actual item in this.items
 		$( event.target ).parents().each( function() {
 			if ( $.data( this, that.widgetName + "-item" ) === that ) {
 				currentItem = $( this );
@@ -5725,7 +5725,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		if ( this.placeholder ) {
 
 			//$(this.placeholder[0]).remove(); would have been the jQuery way - unfortunately,
-			// it unbinds ALL events from the original node!
+			// it unbinds ALL events from the original nodejs!
 			if ( this.placeholder[ 0 ].parentNode ) {
 				this.placeholder[ 0 ].parentNode.removeChild( this.placeholder[ 0 ] );
 			}
@@ -6690,7 +6690,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		}
 
 		//$(this.placeholder[0]).remove(); would have been the jQuery way - unfortunately,
-		// it unbinds ALL events from the original node!
+		// it unbinds ALL events from the original nodejs!
 		this.placeholder[ 0 ].parentNode.removeChild( this.placeholder[ 0 ] );
 
 		if ( !this.cancelHelperRemoval ) {

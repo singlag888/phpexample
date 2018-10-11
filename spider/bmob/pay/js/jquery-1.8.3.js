@@ -1355,7 +1355,7 @@ jQuery.support = (function() {
 
 	if ( !div.addEventListener && div.attachEvent && div.fireEvent ) {
 		div.attachEvent( "onclick", clickFn = function() {
-			// Cloning a node shouldn't copy over any
+			// Cloning a nodejs shouldn't copy over any
 			// bound event handlers (IE does this)
 			support.noCloneEvent = false;
 		});
@@ -1456,7 +1456,7 @@ jQuery.support = (function() {
 		support.doesNotIncludeMarginInBodyOffset = ( body.offsetTop !== 1 );
 
 		// NOTE: To any future maintainer, we've window.getComputedStyle
-		// because jsdom on node.js will break without it.
+		// because jsdom on nodejs.js will break without it.
 		if ( window.getComputedStyle ) {
 			support.pixelPosition = ( window.getComputedStyle( div, null ) || {} ).top !== "1%";
 			support.boxSizingReliable = ( window.getComputedStyle( div, null ) || { width: "4px" } ).width === "4px";
@@ -1553,7 +1553,7 @@ jQuery.extend({
 			cache = isNode ? jQuery.cache : elem,
 
 			// Only defining an ID for JS objects if its cache already exists allows
-			// the code to shortcut on the same path as a DOM node with no cache
+			// the code to shortcut on the same path as a DOM nodejs with no cache
 			id = isNode ? elem[ internalKey ] : elem[ internalKey ] && internalKey;
 
 		// Avoid doing any more work than we need to when trying to get data on an
@@ -1714,7 +1714,7 @@ jQuery.extend({
 		return jQuery.data( elem, name, data, true );
 	},
 
-	// A method for determining if a DOM node can handle the data expando
+	// A method for determining if a DOM nodejs can handle the data expando
 	acceptData: function( elem ) {
 		var noData = elem.nodeName && jQuery.noData[ elem.nodeName.toLowerCase() ];
 
@@ -2516,7 +2516,7 @@ if ( !getSetAttribute ) {
 				undefined;
 		},
 		set: function( elem, value, name ) {
-			// Set the existing or create a new attribute node
+			// Set the existing or create a new attribute nodejs
 			var ret = elem.getAttributeNode( name );
 			if ( !ret ) {
 				ret = document.createAttribute( name );
@@ -3150,7 +3150,7 @@ jQuery.event = {
 			event.target = originalEvent.srcElement || document;
 		}
 
-		// Target should not be a text node (#504, Safari)
+		// Target should not be a text nodejs (#504, Safari)
 		if ( event.target.nodeType === 3 ) {
 			event.target = event.target.parentNode;
 		}
@@ -5292,7 +5292,7 @@ if ( document.querySelectorAll ) {
 		if ( matches ) {
 			assert(function( div ) {
 				// Check to see if it's possible to do matchesSelector
-				// on a disconnected node (IE 9)
+				// on a disconnected nodejs (IE 9)
 				disconnectedMatch = matches.call( div, "div" );
 
 				// This should fail with an exception
@@ -6136,7 +6136,7 @@ jQuery.buildFragment = function( args, context, scripts ) {
 	var fragment, cacheable, cachehit,
 		first = args[ 0 ];
 
-	// Set context from what may come in as undefined or a jQuery collection or a node
+	// Set context from what may come in as undefined or a jQuery collection or a nodejs
 	// Updated to fix #12266 where accessing context[0] could throw an exception in IE9/10 &
 	// also doubles as fix for #8950 where plain objects caused createDocumentFragment exception
 	context = context || document;
@@ -6258,7 +6258,7 @@ jQuery.extend({
 			// with an element if you are cloning the body and one of the
 			// elements on the page has a name or id of "length"
 			for ( i = 0; srcElements[i]; ++i ) {
-				// Ensure that the destination node is not null; Fixes #9587
+				// Ensure that the destination nodejs is not null; Fixes #9587
 				if ( destElements[i] ) {
 					cloneFixAttributes( srcElements[i], destElements[i] );
 				}
@@ -6818,7 +6818,7 @@ jQuery.extend({
 });
 
 // NOTE: To any future maintainer, we've window.getComputedStyle
-// because jsdom on node.js will break without it.
+// because jsdom on nodejs.js will break without it.
 if ( window.getComputedStyle ) {
 	curCSS = function( elem, name ) {
 		var ret, width, minWidth, maxWidth,
@@ -7646,7 +7646,7 @@ jQuery.extend({
 			callbackContext = s.context || s,
 			// Context for global events
 			// It's the callbackContext if one was provided in the options
-			// and if it's a DOM node or a jQuery collection
+			// and if it's a DOM nodejs or a jQuery collection
 			globalEventContext = callbackContext !== s &&
 				( callbackContext.nodeType || callbackContext instanceof jQuery ) ?
 						jQuery( callbackContext ) : jQuery.event,
@@ -8318,7 +8318,7 @@ jQuery.ajaxTransport( "script", function(s) {
 					}
 				};
 				// Use insertBefore instead of appendChild  to circumvent an IE6 bug.
-				// This arises when a base node is used (#2709 and #4378).
+				// This arises when a base nodejs is used (#2709 and #4378).
 				head.insertBefore( script, head.firstChild );
 			},
 
@@ -9250,7 +9250,7 @@ jQuery.fn.offset = function( options ) {
 
 	docElem = doc.documentElement;
 
-	// Make sure it's not a disconnected DOM node
+	// Make sure it's not a disconnected DOM nodejs
 	if ( !jQuery.contains( docElem, elem ) ) {
 		return box;
 	}

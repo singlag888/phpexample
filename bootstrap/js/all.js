@@ -2615,7 +2615,7 @@ var mutators = {
     var node = mutation[0];
     var abstract = mutation[1];
 
-    // If we already have a replaced node we do not want to continue nesting within it.
+    // If we already have a replaced nodejs we do not want to continue nesting within it.
     // Short-circuit to the standard replacement
     if (~classArray(node).indexOf(config.replacementClass)) {
       return mutators.replace(mutation);

@@ -1,3 +1,7 @@
+/**
+ *　顶部大分类菜单切换
+ */
+
 function topMenuItem(menuItemId, menuContentID) {
 
     document.getElementById(menuContentID).style.display = 'none';
@@ -133,3 +137,34 @@ function fixedMouse(e, target) {
     } else return true;
     return related && related.prefix != 'xul' && !contains(target, related) && related !== target;
 }
+
+/**
+ * 顶部轮播图
+ */
+let slidePicIndex = 0;
+
+function slidePic() {
+    let slideContainer = document.getElementById('top_slide_container');
+    let slideDot = document.getElementById('top_slide_container_dot').getElementsByTagName('span');
+
+    let allImg = slideContainer.getElementsByTagName('img');
+    for (let i = 0; i < allImg.length; i++) {
+        allImg[i].style.display = 'none';
+        slideDot[i].className = slideDot[i].className.replace(' active', '');
+    }
+    allImg[slidePicIndex].style.display = 'block';
+    slideDot[slidePicIndex].className += ' active';
+
+    if (slidePicIndex < allImg.length) {
+        slidePicIndex++;
+    }
+    if (slidePicIndex >= allImg.length) {
+        slidePicIndex = 0;
+    }
+
+    setTimeout(function () {
+        slidePic();
+    }, 3000);
+}
+
+slidePic();

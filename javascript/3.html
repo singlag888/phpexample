@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+
+1. let 块级作用域
+<script>
+
+    function log(content) {
+        console.log(content);
+    }
+
+    /*var a = 2;
+    {
+        let a  = 3;
+        console.log(a);
+    }
+    console.log(a);
+
+    {
+        const ARR = [5,6];
+        ARR.push(7);
+        console.log(ARR);
+        ARR = 10;
+    }*/
+
+    /* var getPrice = function () {
+         return 4.55;
+     };
+
+     var getPrice = () => 4.55;
+
+     console.log(getPrice());
+
+     let arr = ['apple', 'banana', 'orange'];
+     let breakfast = arr.map(fruit => {
+         return fruit + 's';
+     });
+
+     console.log(breakfast);*/
+
+
+    /*function Person() {
+        this.age = 0;
+
+        setInterval(function growUp() {
+            this.age++;
+            console.log(person.age);
+
+        }, 1000);
+    }
+
+    var person = new Person();
+    console.log(person.age);
+
+    setInterval(function log() {
+        console.log(person.age);
+    }, 1000);*/
+
+    /*function Person() {
+        var self  = this;
+        self.age  = 0;
+
+        setInterval(function growUp() {
+            self.age++;
+        },1000);
+    }
+
+    let person = new Person();
+    setInterval(function logg() {
+        console.log(person.age);
+    },1000);*/
+
+    /*function Person() {
+        this.age = 0;
+
+        setInterval(()=>{
+            this.age ++;
+        },1000);
+    }
+
+    let person = new Person();
+    setInterval(function logg() {
+        console.log(person.age);
+    },1000);*/
+
+    //    let getFinalPrice = (price,tax=0.7)=>price+price*tax;
+    //console.log(getFinalPrice(500));
+
+    /*function foo(x, y, z) {
+        console.log(x, y, z);
+    }
+
+    arr = [1, 2, 3];
+    foo(...arr);
+
+    function foo(...args) {
+        console.log(args);
+    }
+
+    foo(1, 2, 3, 4, 5);*/
+
+    /*function getCar(make, model, value) {
+        return {
+            make,
+            model,
+            value,
+
+            ['make' + make]: true,
+
+            depreciate() {
+                this.value -= 2500;
+            }
+        };
+    }
+
+    let car = getCar('Barret','Lee',40000);
+    console.log(car);*/
+
+    /*function foo() {
+        return [1, 2, 3];
+    }
+
+    let arr = foo();
+
+    console.log(arr);
+
+    let [a, b, c] = foo();
+    console.log(a, b, c);
+
+    function bar() {
+        return {
+            x: 4,
+            y: 5,
+            z: 6
+        };
+    }
+
+    let {x: x} = bar();
+    let {z: y} = bar();
+
+    console.log(x, y);*/
+
+    /*var parent = {
+        foo() {
+            console.log('Hello from the Parent');
+        }
+    };
+
+    var child = {
+        foo(){
+            super.foo();
+            console.log('Hello from the Child');
+        }
+    };
+
+    Object.setPrototypeOf(child,parent);
+    child.foo();*/
+
+
+    /*let user = 'Barret';
+    console.log(`Hi ${user}!`);*/
+
+    /*let nicknames = ['di', 'boo', 'punkeye'];
+    nicknames.size = 5;
+
+    console.log(nicknames);
+
+    for (let nickname of nicknames) {
+        console.log(nickname);
+    }
+
+    for (let nickname in nicknames) {
+        console.log(nickname);
+        console.log(nicknames[nickname]);
+    }*/
+
+    /*var myMap = new Map();
+    var keyString = "a string", keyObj = {}, keyFunc = function () {
+    };
+
+    myMap.set(keyString, "value 与 'a string'关联");
+    myMap.set(keyObj, "value 与 keyObj 关联");
+    myMap.set(keyFunc, "value 与 keyFunc　关联");
+
+    console.log(myMap.size);
+
+    log(myMap.get(keyString));
+    log(myMap.get(keyObj));
+    log(myMap.get(keyFunc));
+*/
+    /*class Person{
+
+    }
+
+     let person = new Person();
+
+     let w = new WeakMap();
+ //    w.set('a','b');/
+
+     var o1 = {},
+         o2 = function () {
+
+         },
+         o3 = window;
+
+     w.set(o1,37);
+     w.set(o2,"azerty");
+     w.set(o3,undefined);
+     w.set(w,'map weak');
+     w.set(person,'new person');
+
+     log(w.get(o3));
+
+     log(w.has(o1));
+
+     log(w.delete(o1));
+
+     log(w.get(o1));
+
+     log(w.get(w));
+     log(person);*/
+    /*
+        let mySet = new Set([1,1,2,2,3,3]);
+        log(mySet.size);
+        log(mySet.has(1));
+        log(mySet.add('strings'));
+        log(mySet.add({a:1,b:2}));
+        log(mySet);
+
+        mySet.forEach((item)=>{
+            log(item);
+        });
+
+        for(let value of mySet){
+            log(value);
+        }*/
+
+
+    /*let ws = new WeakSet();
+    var obj = {};
+    var foo = {};
+
+    ws.add(window);
+    ws.add(obj);
+//    ws.add(foo);
+
+    log(ws.has(window));
+    log(ws.has(foo));
+
+    log(ws.delete(window));
+    log(ws.has(window));*/
+
+
+    /*class Task {
+        constructor() {
+            log('task instantiated!');
+        }
+
+        showId() {
+            log(23);
+        }
+
+        static loadAll() {
+            log('Loading all tasks..');
+        }
+    }
+
+    log(typeof Task);
+    let task = new Task();
+    log(task.showId());
+    log(Task.loadAll());*/
+
+    /*class Car{
+        constructor(){
+            log('Creating a new car');
+        }
+    }
+
+    class Porsche extends Car{
+        constructor(){
+            super();
+            log("Creating Porsche");
+        }
+    }
+
+    let porsche = new Porsche();*/
+
+    /*let sym = Symbol("Some optional description");
+    log(typeof sym);
+    log(sym);
+//    for(let value of sym){
+//        log(value);
+//    }
+//    log(sym.value);
+    log(Object.getOwnPropertySymbols(sym));
+
+    var o = {
+        val:10,
+        [Symbol("random")]:"I'm a symbol",
+    };
+    log(Object.getOwnPropertyNames(o));
+    log(Object.getOwnPropertySymbols(o));*/
+
+    /*let arr = [11,12,13];
+    var itr = arr[Symbol.iterator]();
+
+    log(itr);
+
+//    log(itr.next());
+//    log(itr.next());
+//    log(itr.next());
+//    log(itr.next());
+
+    while(!itr.next().done){
+        log(itr.next().value);
+    }*/
+
+    /*function* infiniteNumbers() {
+        var n = 1;
+        while (true) {
+            yield n++;
+        }
+    }
+
+    let numbers = infiniteNumbers();
+
+    log(numbers.next());
+    log(numbers.next());
+    log(numbers.next());
+    log(numbers.next());
+    log(numbers.next());
+    log(numbers.next());
+    log(numbers.next());*/
+
+    /*
+
+        var val = 32;
+        var p = new Promise(function (resolve, reject) {
+            log(resolve);
+            log(reject);
+        });
+
+        p.then(val)
+        =>
+        log("Promise Resolved", val),
+            (err) => log("Promise Rejected", err);
+    */
+
+
+
+    /*let arrayLike = {
+        '0':'a',
+        '1':'b',
+        '2':'c',
+        length:3,
+    };
+    var arr1 = [].slice.call(arrayLike);
+    log(arr1);
+
+    log(Array.from(arrayLike));*/
+    //    log([1,2,[3,4,[5,6]]].flat(3));
+
+    /*const foo = 'bar';
+    const baz = {foo};
+    log(baz);
+
+    const baz2 = {foo:foo};
+    log(baz2);*/
+
+    /*log(Object.is('foo','foo'));
+    log(Object.is({},{}));
+
+    log(Object.is(+0,-0));
+    log(Object.is(NaN,NaN));
+    */
+
+    //    log(Object.assign([1,2,3],[4,5]))
+
+    /*var handler = {
+        get: function (target, name) {
+            if (name === 'prototype') {
+                return Object.prototype;
+            }
+            return 'Hello, ' + name;
+        },
+
+        apply: function (target, thisBinding, args) {
+            return args[0];
+        },
+
+        construct: function (target, args) {
+            return {value: args[1]};
+        }
+    };
+
+    var fproxy = new Proxy(function (x, y) {
+        return x + y;
+    }, handler);
+
+    log(fproxy(1, 2)
+    );
+
+    log(new fproxy(1,3));
+    log(fproxy.prototype === Object.prototype);
+    log(fproxy.foo === 'Hello, foo');
+    */
+
+    /*function timeout(ms) {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve, ms, 'done');
+
+            setTimeout(reject, ms * 2, 'error');
+        })
+    }
+
+    timeout(100).then((value) => {
+        log(value);
+    }, (error) => {
+        log(error)
+    });*/
+
+    /*class RangeIterator {
+        constructor(start, stop) {
+            this.value = start;
+            this.stop = stop;
+        }
+
+        [Symbol.iterator]() {
+            return this;
+        }
+
+        next() {
+            var value = this.value;
+            if (value < this.stop) {
+                this.value++;
+                return {done: false, value: value};
+            }
+            return {done: true, value: undefined};
+        }
+    }
+
+    function range(start, stop) {
+        return new RangeIterator(start, stop);
+    }
+
+    for (let value of range(0, 3)) {
+        log(value);
+    }
+*/
+
+    /*function* helloWorldGenerator() {
+        yield 'hello';
+        yield 'world';
+        return 'ending';
+    }
+
+    var hw = helloWorldGenerator();
+    log(hw.next());
+    log(hw.next());
+    log(hw.next());
+    log(hw.next());
+    log(hw.next());*/
+
+    /*function* foo() {
+        yield 1;
+        yield 2;
+        yield 3;
+        yield 4;
+        yield 5;
+        yield 6;
+        yield 7;
+        return 8;
+    }
+
+    for (let v of foo()) {
+        log(v);
+    }
+
+    function* objectEntries(obj) {
+        let propKeys = Reflect.ownKeys(obj);
+
+        for (let propKey of propKeys) {
+            yield [propKey, obj[propKey]];
+        }
+    }
+
+    let jane = {first:'Jane',last:'Doe'};
+
+//    for (let val of jane){
+//        log(val);
+//    }
+
+    for (let [key,value] of objectEntries(jane)){
+        log(`${key}: ${value}`)
+    }*/
+
+
+    /*function timeout(ms) {
+        return new Promise((resolve) => {
+            setTimeout(resolve, ms);
+            console.log('promise ');
+        });
+    }
+
+    async function asyncPrint(value, ms) {
+        console.log('asyncPrint start');
+        await timeout(ms);
+        console.log(value);
+    }
+
+    asyncPrint('Hello world', 5000);*/
+
+    /*const MyClass = class Me {
+        getClassName() {
+            return Me.name;
+        }
+    }
+
+
+    let inst = new MyClass();
+    log(inst.getClassName());
+
+    let person = new class{
+        constructor(name){
+            this.name = name;
+        }
+
+        sayName(){
+            console.log(this.name);
+        }
+    }("张三");
+
+    person.sayName();
+
+
+    new Foo();
+
+    class Foo{
+
+    }*/
+
+    /*class Logger {
+        constructor() {
+            this.printName = this.printName.bind(this);
+        }
+
+        printName(name = 'there') {
+            this.print(name);
+        }
+
+        print(text) {
+            console.log(text);
+        }
+    }
+
+    let logger = new Logger();
+    //    logger.printName();
+    const {printName} = logger;
+    printName();
+
+    log(Logger.name);*/
+
+
+    /*class MyClass {
+
+      static  myProp = 42;
+
+        constructor() {
+            console.log(this.myProp);
+        }
+    }
+
+    let myClass = new MyClass();
+
+    log(myClass);*/
+
+    /*function Person(name) {
+        if(new.target !== undefined){
+            this.name = name;
+        }else {
+            throw new Error('must use new to create instance');
+        }
+    }
+
+    let person;
+//    let person = new Person('张三');
+//    log(person.name);
+    let call = Person.call(person,'李四');
+    log(call.name);*/
+
+    /*class Point {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        toString() {
+            return this.x + " " + this.y;
+        }
+    }
+
+    class ColorPoint extends Point {
+
+        constructor(x, y, color) {
+            super(x, y);
+            this.color = color;
+        }
+
+        toString() {
+            return this.color + " " + super.toString();
+        }
+    }
+
+    let colorPoint = new ColorPoint(3, 4, 'world');
+    log(colorPoint.toString());
+*/
+
+    /*var obj = {
+        a: 1,
+        b: 2,
+    };
+
+
+    log(obj.__proto__);
+    log(Object.getPrototypeOf(obj));
+    log(obj.__proto__ === Object.getPrototypeOf(obj));
+    log(obj.__proto__.constructor);
+    log(obj.__proto__.constructor.prototype);
+    let constructor = new obj.__proto__.constructor;
+    log(constructor);
+
+    //    log(obj.[[prototype]]);
+    log(Object.getPrototypeOf(obj));*/
+
+    /*class A {
+        p() {
+            return 2;
+        }
+    }
+
+    class B extends A {
+        constructor() {
+            super();
+            log(A.prototype.p());
+        }
+    }
+
+    let b = new B();
+    log(b.__proto__);
+    log(b.__proto__.constructor.prototype);
+    log(B.constructor);
+    log(typeof B);
+    log(typeof B.constructor);
+    log(B === b.__proto__.constructor);
+    log(B.prototype);
+    log(b.__proto__===B.prototype);*/
+
+    /*class A {
+//        whatup = 43;
+        constructor() {
+            this.p = 2;
+        }
+
+        loggtes(){
+            log('loggtestss');
+        }
+    }
+//    A.p = 5;
+
+    A.prototype.x = 2;
+
+    log(A.prototype);
+    log(A);
+    log(A.p);
+    log(new A().p);
+
+    for (let val in new A()) {
+        log(val);
+    }
+
+    class B extends A {
+
+//      static  world = 'hellojs';
+
+        constructor(){
+            super();
+            this.valll = 53;
+        }
+
+        logsu() {
+            log(super.p);
+        }
+
+        loggetstss(){
+            super.loggtes();
+        }
+
+        get m() {
+            return super.p;
+        }
+    }
+
+    log('---');
+    let b = new B();
+    log(b.m);
+    b.logsu();
+
+    for (let val in b) {
+        log(val);
+    }
+
+    log(Object.keys(b));
+    log(b.loggetstss());
+
+    log('========');*/
+
+    /*class A{
+        constructor(){
+            this.x = 1;
+        }
+
+    }
+
+    class B extends A{
+        constructor(){
+            super();
+            this.x = 5;
+            super.x = 3;
+            log(super.x);
+            log(this.x);
+        }
+
+        m(){
+            super.print();
+        }
+    }
+
+    let  b = new B();
+//    b.m();
+*/
+
+    //    class A{
+    //
+    //    }
+    //
+    //    class B extends A{
+    //
+    //    }
+    //
+    //    log(B.__proto__ === A);
+    //    log(B.prototype.__proto__ === A.prototype);
+
+
+
+
+</script>
+</body>
+</html>
