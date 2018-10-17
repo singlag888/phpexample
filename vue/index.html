@@ -3,8 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <title>Vue</title>
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="js/vue.js"></script>
 </head>
 <body>
+
+<h2>Vue Sample Course</h2>
+<a href="https://scrimba.com/playlist/pXKqta">https://scrimba.com/playlist/pXKqta</a>
+
+<h3>sample</h3>
+
+<div id="app">
+    {{ message }}
+</div>
+
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    });
+
+    app.message = 'I have change the data!';
+</script>
+
+<h3>conditional</h3>
+<div id="conditional">
+    <span v-if="seen">Now you see me</span>
+</div>
+
+<script>
+    let condi = new Vue({
+        el: '#conditional',
+        data: {
+            seen: true
+        }
+    });
+
+
+</script>
+
+<h3>for</h3>
+
+<div id="fordiv">
+    <ol>
+        <li v-for="todo in todos">
+            {{ todo.text }}
+        </li>
+    </ol>
+</div>
+
+<script>
+    let fordiv = new Vue({
+        el: '#fordiv',
+        data: {
+            todos: [
+                {text: 'Learn JavaScript'},
+                {text: 'Learn Vue'},
+                {text: 'Build something awesome'},
+            ]
+        }
+    });
+</script>
+
+
+<h3>handling user input</h3>
+<div id="clickdiv">
+    <p>{{ message }}</p>
+
+    <button v-on:click="reverseMessage">Reverse Message</button>
+
+</div>
+
+<script>
+    let clickv = new Vue({
+        el: '#clickdiv',
+        data: {
+            message: 'hello vue!'
+        },
+        methods: {
+            reverseMessage: function () {
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    })
+</script>
+
+<h3>model</h3>
+<div id="divmodel">
+    <p>{{ message }}</p>
+    <input v-model="message">
+</div>
+
+<script>
+    let modelvu = new Vue({
+        el: '#divmodel',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+</script>
+
+<h3>components</h3>
+
+<div id="divcomponent">
+    <ol>
+        <todo-item></todo-item>
+        <todo-item></todo-item>
+        <todo-item></todo-item>
+    </ol>
+</div>
+
+<script>
+
+    Vue.component('todo-item', {
+        template: '<li>This is a todo</li>'
+    });
+    let component = new Vue({
+        el: '#divcomponent',
+        data: {}
+    });
+</script>
+
+
+<h3>component with props</h3>
+
+<div id="divcompent2">
+    <ol>
+        <todo-item2
+                v-for="item in groceyList"
+                v-bind:todo="item"
+                v-bind:key="item.id"
+        >
+        </todo-item2>
+    </ol>
+</div>
+
+<!--https://vuejs.org/v2/guide/list.html#key-->
+<script>
+    Vue.component('todo-item2', {
+        props: ['todo'],
+        template: '<li>{{ todo.text }}</li>'
+    });
+
+    let component2 = new Vue({
+        el: '#divcompent2',
+        data: {
+            groceyList: [
+                {id: 0, text: 'Vegetables'},
+                {id: 1, text: 'Cheese'},
+                {id: 2, text: 'Whatever elese humans are supposed to eat'}
+            ]
+        }
+    });
+
+</script>
+
 
 </body>
 </html>

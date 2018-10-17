@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue test</title>
+
+    <script src="js/vue.js"></script>
+
+    <!-- 因为 AJAX 库和通用工具的生态已经相当丰富，Vue 核心代码没有重复 -->
+    <!-- 提供这些功能以保持精简。这也可以让你自由选择自己更熟悉的工具。 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+    <span>Message: {{ msg }}</span> <br>
+    <span v-once>Message will not change: {{ msg }}</span>
+
+    <p>Using mustcahes: {{ rawHtml }}</p>
+    <p>Using v-hmtl directive: <span v-html="rawHtml"></span></p>
+
+    <p>Original message:"{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage }}"</p>
+
+    <p>Current Date: {{ now }}</p>
+    <p>insert date: <span v-html="insertDateStr"></span>
+        <button v-on:click="insertDate">Insert Date</button>
+    </p>
+
+    <p>watch arrtitube: {{ fullName }}</p>
+
+    <p>
+        Ask a yes/no question:
+        <input type="text" v-model="question">
+    </p>
+    <p>{{ answer }}</p>
+
+    <p>class & style</p>
+
+    <div class="static" v-bind:class="{ active: isActive, 'text-danger':hasError }">hello</div>
+    <div v-bind:class="classObject">world</div>
+
+    <div v-bind:style="{ color:activeColor, fontSize: fontSize+'px' }">hello world</div>
+
+    <div v-bind:style="styleObject">hello java</div>
+
+    <p>if else condition</p>
+    <h3 v-if="ok">Yes</h3>
+    <h3 v-else>No</h3>
+
+    <template v-if="true">
+        <h3>Title</h3>
+        <p>Paragraph 1</p>
+        <p>Paragraph 3</p>
+    </template>
+
+    <div v-if="Math.random()>0.5">
+        Now you see me
+    </div>
+    <div v-else>
+        Now you don't
+    </div>
+
+    <p>元素复用</p>
+
+    <template v-if="loginType==='username'">
+        <label>Username</label>
+        <input type="text" placeholder="Enter your username">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email address">
+    </template>
+
+    <button v-on:click="toggleLoginType">toggle login type</button>
+
+    <p>列表渲染</p>
+
+    <ul>
+        <li v-for="item in items">
+            {{ item.message }}
+        </li>
+    </ul>
+
+    <ul>
+        <li v-for="(item, index) in items">
+            {{ index }} - {{ item.message }}
+        </li>
+    </ul>
+
+    <ul>
+        <li v-for="(value, key,index) in forOjbect">
+            {{ index }}. {{ key }}-{{ value }}
+        </li>
+    </ul>
+
+    <ul>
+        <li v-for="n in evenNumbers">
+            {{ n }}
+        </li>
+    </ul>
+
+    <p>v-for for component</p>
+
+
+    <form v-on:submit.prevent="addNewTodo">
+        <label for="new-todo">Add a todo</label>
+        <input type="text"
+               v-model="newTodoText"
+               id="new-todo"
+               placeholder="E.g. Feed the cat"
+        >
+        <button>Add</button>
+    </form>
+    <ul>
+        <li
+                is="todo-item"
+                v-for="(todo,index) in todos"
+                v-bind:key="todo.id"
+                v-bind:title="todo.title"
+                v-on:remove="todos.splice(index,1)"
+        ></li>
+    </ul>
+
+    <p>bind event</p>
+    <button v-on:click="counter+=1">Add 1</button>
+    <p>The button above has been clicked {{ counter }} times.</p>
+
+    <button v-on:click="greet">Greet</button>
+    <br>
+    <button v-on:click="say('hi')">Say hi</button>
+    <button v-on:click="say('what')">Say what</button>
+    <br>
+    <button v-on:click="warn('Form cannot be submitted yet.',$event)"> Submit</button>
+
+
+    <div></div>
+    <button-counter></button-counter>
+    <p></p>
+    <!--<blog-post title="My jounery with Vue"></blog-post>-->
+    <!--<blog-post title="Blogging with Vue"></blog-post>-->
+    <!--<blog-post title="Blogging with Vue"></blog-post>-->
+
+    <hr>
+
+    <!--<blog-post-->
+    <!--v-for="post in blogPosts"-->
+    <!--v-bind:key="post.id"-->
+    <!--v-bind:post="post"-->
+    <!--&gt;</blog-post>-->
+
+    <div v-bind:style="{ fontSize: postFontSize + 'em' }">
+        <blog-post
+                v-for="post in blogPosts"
+                v-bind:key="post.id"
+                v-bind:post="post"
+                v-on:enlarge-text="postFontSize+=$event"
+        ></blog-post>
+    </div>
+
+    <p>
+    </p>
+
+    <!--<custom-input-->
+    <!--v-bind:value="searchText"-->
+    <!--v-on:input="searchText = $event"-->
+    <!--&gt;</custom-input>-->
+
+    <custom-input v-model="searchText"></custom-input>
+</div>
+<script>
+
+    Vue.component('todo-item', {
+        template: '\
+        <li>\
+          {{ title }}\
+          <button v-on:click="$emit(\'remove\')">Remove</button>\
+          </li>\
+          ',
+        props: ['title']
+    });
+    Vue.component('button-counter', {
+        data: function () {
+            return {
+                count: 0
+            }
+        },
+        template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    });
+    Vue.component('blog-post', {
+        props: ['post'],
+        template: `
+        <div class="blog-post">
+         <h3>{{ post.title }}</h3>
+            <button v-on:click="$emit('enlarge-text',0.1)">
+                Enlarge text
+            </button>
+            <div v-html="post.content"></div>
+        </div>
+        `
+    });
+
+    Vue.component('custom-input', {
+        props: ['value'],
+        template: `
+        <input
+        v-bind:value="value"
+        v-on:input="$emit('input',$event.target.value)"
+        >
+       `
+    });
+
+
+    let vue = new Vue({
+        el: '#app',
+        data: {
+            msg: 'hello vue',
+            rawHtml: '<span style="color:red">This should be red.</span>',
+            message: 'hello',
+            insertDateStr: '',
+            firstName: 'Foo',
+            lastName: 'Bar',
+//            fullName: 'Foo Bar',
+            question: '',
+            answer: 'I cannot give you answer until you ask a question',
+            isActive: true,
+            hasError: false,
+            activeColor: 'red',
+            fontSize: 30,
+            styleObject: {
+                color: 'green',
+                fontSize: '24px',
+            },
+            ok: true,
+            loginType: 'username',
+            items: [
+                {message: 'Foo'},
+                {message: 'Bar'},
+            ],
+            forOjbect: {
+                firstName: 'John',
+                lastName: 'Doe',
+                age: 30,
+            },
+            numbers: [1, 2, 3, 4, 5],
+            //to do template
+            newTodoText: '',
+            todos: [
+                {
+                    id: 1,
+                    title: 'Do the dishes',
+                }, {
+                    id: 2,
+                    title: 'Take out the trash',
+                }, {
+                    id: 3,
+                    title: 'Move the lawn',
+                }
+            ],
+            nextTodoId: 4,
+            counter: 0,
+            blogPosts: [
+                {id: 1, title: 'My journey with Vue'},
+                {id: 2, title: 'Blogging Vue'},
+                {id: 3, title: 'why Vue is so fun'},
+            ],
+            postFontSize: 1,
+            searchText: 'world',
+
+
+        },
+        methods: {
+            insertDate: function () {
+                this.insertDateStr = '<span v-html="now"></span>';
+            },
+            getAnswer: function () {
+                if (this.question.indexOf('?') === -1) {
+                    this.answer = 'Questions usually contain a question mark. ;-)';
+                    return
+                }
+                this.answer = 'Thinking...'
+                var vm = this
+                axios.get('https://yesno.wtf/api')
+                    .then(function (response) {
+                        vm.answer = _.capitalize(response.data.answer)
+                    })
+                    .catch(function (error) {
+                        vm.answer = 'Error! Could not reach the API. ' + error
+                    })
+            },
+            toggleLoginType: function () {
+                if (this.loginType === 'username') {
+                    this.loginType = 'email'
+                } else {
+                    this.loginType = 'username'
+                }
+            },
+            addNewTodo: function () {
+                this.todos.push({
+                    id: this.nextTodoId++,
+                    title: this.newTodoText,
+                })
+                this.newTodoText = ''
+            },
+            greet: function (event) {
+                alert('hello ' + this.msg + ' !')
+                if (event) {
+                    alert(event.target.tagName)
+                }
+            },
+            say: function (message) {
+                alert(message)
+            },
+            warn: function (message, event) {
+                if (event) {
+                    event.preventDefault()
+                }
+                alert(message)
+            }
+        },
+        computed: {
+            reversedMessage: function () {
+                return this.message.split('').reverse().join('');
+            },
+            now: function () {
+                return Date.now();
+            },
+            fullName: {
+                get: function () {
+                    return this.firstName + ' ' + this.lastName;
+                },
+                set: function (newValue) {
+                    let names = newValue.split(' ');
+                    this.firstName = names[0];
+                    this.lastName = names[names.length - 1];
+                }
+            },
+            classObject: function () {
+                return {
+                    active: this.isActive && !this.hasError,
+                    'text-danger': this.hasError && this.hasError.type === 'fatal'
+                }
+            },
+            evenNumbers: function () {
+                return this.numbers.filter(function (number) {
+                    return number % 2 === 0
+                })
+            },
+        },
+        /*watch: {
+            firstName: function (val) {
+                this.fullName = val + ' ' + this.lastName;
+            },
+            lastName: function (val) {
+                this.fullName = this.firstName + ' ' + val;
+            }
+        }*/
+        watch: {
+            question: function (newQuestion, oldQuestion) {
+                this.answer = 'Waiting for you to stop typing...'
+                this.debouncedGetAnswer()
+            },
+        },
+        created: function () {
+            this.debouncedGetAnswer = _.debounce(this.getAnswer, 500);
+        }
+    })
+</script>
+
+</body>
+</html>

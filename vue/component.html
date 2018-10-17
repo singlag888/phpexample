@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue components</title>
+    <script src="js/vue.js"></script>
+
+    <style>
+        .tab-button {
+            padding: 6px 10px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background: #f0f0f0;
+            margin-bottom: -1px;
+            margin-right: -1px;
+        }
+
+        .tab-button:hover {
+            background: #e0e0e0;
+        }
+
+        .tab-button.active {
+            background: #e0e0e0;
+        }
+
+        .tab {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .posts-tab {
+            display: flex;
+        }
+
+        .posts-sidebar {
+            max-width: 40vw;
+            margin: 0;
+            padding: 0 10px 0 0;
+            list-style-type: none;
+            border-right: 1px solid #ccc;
+        }
+
+        .posts-sidebar li {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .posts-sidebar li:hover {
+            background: #eee;
+        }
+
+        .posts-sidebar li.selected {
+            background: lightblue;
+        }
+
+        .selected-post-container {
+            padding-left: 10px;
+        }
+
+        .selected-post > :first-child {
+            margin-top: 0;
+            padding-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <navigation-link url="/profile">
+        <span class="fa fa-user"></span>
+        Your Profile
+    </navigation-link>
+
+    <base-layout>
+        <template slot="header">
+            <h1>Here might be a page title</h1>
+        </template>
+
+        <p>A paragraph for the main container.</p>
+        <p>And other one.</p>
+
+        <template slot="footer">
+            <p>Here's some contact info</p>
+        </template>
+    </base-layout>
+
+</div>
+
+<div id="dynamic-component-tab">
+    <button
+            v-for="tab in tabs"
+            v-bind:key="tab"
+            v-bind:class="['tab-button',{ active: currentTab === tab }]"
+            v-on:click="currentTab = tab"
+    >{{ tab }}
+    </button>
+    <keep-alive>
+        <component
+                v-bind:is="currentTabComponent"
+                class="tab">
+
+        </component>
+    </keep-alive>
+</div>
+
+<script>
+
+    Vue.component('navigation-link', {
+        props: ['url'],
+        template: `
+        <a v-bind:href="url"
+        class="nav-link"
+        >
+         <slot></slot>
+        </a>
+        `,
+
+    });
+    Vue.component('base-layout', {
+        template: `
+        <div>
+            <header>
+                <slot name="header"></slot>
+            </header>
+            <main>
+             <slot></slot>
+            </main>
+            <footer>
+                <slot name="footer"></slot>
+            </footer>
+        </div>
+        `
+    });
+
+    let slotCom = new Vue({
+        el: "#app",
+        data: {}
+    });
+
+    Vue.component('tab-posts', {
+        data: function () {
+            return {
+                posts: [
+                    {
+                        id: 1,
+                        title: 'Cat Ipsum',
+                        content: '<p>Dont wait for the storm to pass, dance in the rain kick up litter decide to want nothing to do with my owner today demand to be let outside at once, and expect owner to wait for me as i think about it cat cat moo moo lick ears lick paws so make meme, make cute face but lick the other cats. Kitty poochy chase imaginary bugs, but stand in front of the computer screen. Sweet beast cat dog hate mouse eat string barf pillow no baths hate everything stare at guinea pigs. My left donut is missing, as is my right loved it, hated it, loved it, hated it scoot butt on the rug cat not kitten around</p>'
+                    },
+                    {
+                        id: 2,
+                        title: 'Hipster Ipsum',
+                        content: '<p>Bushwick blue bottle scenester helvetica ugh, meh four loko. Put a bird on it lumbersexual franzen shabby chic, street art knausgaard trust fund shaman scenester live-edge mixtape taxidermy viral yuccie succulents. Keytar poke bicycle rights, crucifix street art neutra air plant PBR&B hoodie plaid venmo. Tilde swag art party fanny pack vinyl letterpress venmo jean shorts offal mumblecore. Vice blog gentrify mlkshk tattooed occupy snackwave, hoodie craft beer next level migas 8-bit chartreuse. Trust fund food truck drinking vinegar gochujang.</p>'
+                    },
+                    {
+                        id: 3,
+                        title: 'Cupcake Ipsum',
+                        content: '<p>Icing dessert soufflé lollipop chocolate bar sweet tart cake chupa chups. Soufflé marzipan jelly beans croissant toffee marzipan cupcake icing fruitcake. Muffin cake pudding soufflé wafer jelly bear claw sesame snaps marshmallow. Marzipan soufflé croissant lemon drops gingerbread sugar plum lemon drops apple pie gummies. Sweet roll donut oat cake toffee cake. Liquorice candy macaroon toffee cookie marzipan.</p>'
+                    }
+                ],
+                selectedPost: null,
+            }
+        },
+        template: `
+           <div class="posts-tab">
+            <ul class="posts-sidebar">
+                <li
+                 v-for="post in posts"
+                 v-bind:key="post.id"
+                 v-bind:class="{ selected: post === selectedPost }"
+                 v-on:click="selectedPost = post"
+                >
+                    {{ post.title }}
+                </li>
+            </ul>
+            <div class="selected-post-container">
+                <div class="selected-post" v-if="selectedPost">
+                    <h3>{{ selectedPost.title }}</h3>
+                    <div v-html="selectedPost.content"></div>
+                </div>
+                <strong v-else>
+                    Click on a blog title to the left to view it.
+                </strong>
+            </div>
+           </div>
+        `
+    });
+    Vue.component('tab-archive', {
+        template: '<div>Archive component</div>'
+    });
+    new Vue({
+        el: '#dynamic-component-tab',
+        data: {
+            currentTab: 'Posts',
+            tabs: ['Posts', 'Archive']
+        },
+        computed: {
+            currentTabComponent: function () {
+                return 'tab-' + this.currentTab.toLowerCase()
+            }
+        }
+    })
+</script>
+
+
+<h3>translate</h3>
+
+<div id="component_transition">
+    <button v-on:click="show = !show">
+        Toggle
+    </button>
+    <transition name="fade">
+        <p v-if="show">hello</p>
+    </transition>
+
+    <transition name="slide-fade">
+        <p v-if="show">hello </p>
+    </transition>
+</div>
+
+<script>
+    new Vue({
+        el: '#component_transition',
+        data: {
+            show: true,
+        }
+    })
+</script>
+
+<style>
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
+
+    .slide-fade-enter-active {
+        transition: all .3s ease;
+    }
+
+    .slide-fade-leave-active {
+        transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+
+    .slide-fade-enter, .slide-fade-leave-to {
+        transform: translateX(10px);
+        opacity: 0;
+    }
+</style>
+
+<div id="transition_list">
+    <button v-on:click="add">Add</button>
+    <button v-on:click="remove">Remove</button>
+    <transition-group name="list" tag="p">
+        <span v-for="item in items"
+              v-bind:key="item"
+              class="list-item">
+            {{ item }}
+        </span>
+    </transition-group>
+</div>
+
+<script>
+    new Vue({
+        el: '#transition_list',
+        data: {
+            items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            nextNum: 11,
+        },
+        methods: {
+            randomIndex: function () {
+                return Math.floor(Math.random() * this.items.length);
+            },
+            add: function () {
+                this.items.splice(this.randomIndex(), 0, this.nextNum++);
+            },
+            remove: function () {
+                this.items.splice(this.randomIndex(), 1)
+            }
+        }
+    })
+</script>
+
+<style>
+    .list-item {
+        transition: all 1s;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    /*.list-enter-active,*/
+    .list-leave-active {
+        /*transition: all 1s;*/
+        position: absolute;
+    }
+
+    .list-enter, .list-leave-to {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    /*.list-move {*/
+    /*transition: transform 1s;*/
+    /*}*/
+</style>
+
+<h3>混入　mixins</h3>
+
+<script>
+    var myMixin = {
+        data: function () {
+            return {
+                message: 'hello',
+//                foo: 'abc',
+            }
+        },
+        created: function () {
+            this.hello()
+        },
+        methods: {
+            hello: function () {
+                console.log('hello from mixin!')
+            },
+            foo: function () {
+                console.log('foo')
+            },
+            conflicting: function () {
+                console.log('from mixin')
+            }
+        }
+    }
+
+    var Component = Vue.extend({
+        mixins: [myMixin],
+        data: function () {
+            return {
+                message: 'goodbye',
+//                bar: 'def',
+            }
+        },
+        created: function () {
+            console.log(this.$data)
+        },
+        methods: {
+            bar: function () {
+                console.log('bar')
+            },
+            conflicting: function () {
+                console.log('from self')
+            }
+        }
+    })
+
+    var component = new Component()
+    component.foo();
+    component.bar();
+    component.conflicting()
+</script>
+
+<div id="hook-arguments-example" v-demo:foo.a.b="message">
+
+</div>
+<script>
+    Vue.directive('demo', {
+        bind: function (el, binding, vnode) {
+            var s = JSON.stringify
+            el.innerHTML =
+                'name: ' + s(binding.name) + '<br/>' +
+                'value: ' + s(binding.value) + '<br/>' +
+                'expression: ' + s(binding.expression) + '<br/>' +
+                'argument: ' + s(binding.arg) + '<br/>' +
+                'modifiers: ' + s(binding.modifiers) + '<br/>' +
+                'vnode keys: ' + Object.keys(vnode).join(', ')
+        }
+    })
+
+    new Vue({
+        el: '#hook-arguments-example',
+        data: {
+            message: 'hello!'
+        }
+    })
+</script>
+
+</body>
+</html>
