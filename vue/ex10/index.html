@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Firebase + 验证 Example</title>
+    <script src="../js/vue.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <!-- VueFire -->
+    <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
+
+</head>
+<body>
+
+
+<div id="app">
+    <ul is="transition-group">
+        <li v-for="user in users" class="user" :key="user['.key']">
+            <span>{{user.name}} - {{user.email}}</span>
+            <button @click="removeUser(user)">X</button>
+        </li>
+    </ul>
+    <form id="form" @submit.prevent="addUser">
+        <input type="text" v-model="newUser.name" placeholder="Username">
+        <input type="email" v-model="newUser.email" placeholder="email@email.com">
+        <input type="submit" value="Add User">
+    </form>
+
+    <ul class="errors">
+        <li v-show="!validation.name">Name cannot be empty.</li>
+        <li v-show="!validation.email">Please provide a valid email address.</li>
+    </ul>
+</div>
+
+
+<script>
+    var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+    // Setup Firebase
+    var config = {
+        apiKey: "AIzaSyAi_yuJciPXLFr_PYPeU3eTvtXf8jbJ8zw",
+        authDomain: "vue-demo-537e6.firebaseapp.com",
+        databaseURL: "https://vue-demo-537e6.firebaseio.com"
+    }
+    firebase.initializeApp(config)
+
+    let userRef = firebase.database().ref('users')
+
+    new Vue({
+        el: '#app',
+        data: {
+            newUser: {
+                name: '',
+                email: '',
+            }
+        },
+        firebase: {
+            users: userRef
+        },
+        computed: {
+            validation: function () {
+                return {
+                    name: !!this.newUser.name.trim(),
+                    email: emailRE.test(this.newUser.email)
+                }
+            },
+            isValid: function () {
+                let validation = this.validation;
+                return Object.keys(validation).every(function (key) {
+                    return validation[key]
+                })
+            }
+        },
+        methods: {
+            addUser: function () {
+                if (this.isValid) {
+                    userRef.push(this.newUser)
+                    this.newUser.name = ''
+                    this.newUser.email = ''
+                }
+            },
+            removeUser: function (user) {
+                userRef.child(user['.key']).remove()
+            }
+        }
+    })
+</script>
+
+
+<style>
+    body {
+        font-family: Helvetica, Arial, sans-serif;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    .user {
+        height: 30px;
+        line-height: 30px;
+        padding: 10px;
+        border-top: 1px solid #eee;
+        overflow: hidden;
+        transition: all .23s ease;
+    }
+
+    .user:last-child {
+        border-bottom: 1px solid #eee;
+    }
+
+    .v-enter, .v-leave-active {
+        height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-top-width: 0;
+        border-bottom-width: 0;
+    }
+
+    .errors {
+        color: #f00;
+    }
+
+</style>
+</body>
+</html>
