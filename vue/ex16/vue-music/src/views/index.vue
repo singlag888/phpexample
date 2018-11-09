@@ -27,7 +27,7 @@
         </div>
 
         <mu-list>
-            <div v-for="(item,index) in songsList">
+            <div v-for="(item,index) in songsList" :key="item.songid">
                 <mu-list-item button tripple @click="songItemClick(item)">
                     <mu-list-item-action>
                         <mu-avatar size="28">
@@ -62,10 +62,42 @@
                 songsList: 'songList'
             })
         },
+        beforeCreate() {
+            logger('beforeCreate')
+        },
         created() {
 //            this.getMusicList('hello')
             this.getTopMusic()
+            logger('created')
         },
+        beforeMount() {
+            logger('beforeMount')
+        },
+        mounted() {
+            logger('mounted')
+        },
+        beforeUpdate() {
+            logger('beforeUpdate')
+        },
+        updated() {
+            logger('updated')
+        },
+        activated() {
+            logger('activated')
+        },
+        deactivated() {
+            logger('deactivated')
+        },
+        beforeDestroy() {
+            logger('beforeDestroy')
+        },
+        destroyed() {
+            logger('destroyed')
+        },
+        errorCaptured(err, vm, info) {
+            logger('errorCaptured' + info)
+        },
+
         methods: {
             ...mapActions({
                 getSongList: 'getSongList',
@@ -86,6 +118,10 @@
             },
 
         }
+    }
+
+    function logger(life) {
+        console.log('lift method index page:' + life)
     }
 </script>
 

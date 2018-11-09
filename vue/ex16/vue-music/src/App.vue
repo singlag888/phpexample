@@ -1,13 +1,5 @@
 <template>
     <div id="app">
-        <!--<div id="nav">-->
-        <!--<router-link to="/">Home</router-link> |-->
-        <!--<router-link to="/about">About</router-link>-->
-        <!--|-->
-        <!--<router-link to="/museui">Muse-UI</router-link>-->
-
-        <!--</div>-->
-
         <div class="main_container" :class="{ 'nav-hide': !isLeftDrawerOpen }">
 
             <mu-appbar color="primary" z-depth="0">
@@ -25,8 +17,7 @@
         </div>
 
 
-        <SlideBar class="left_container"></SlideBar>
-
+        <slide-bar class="left_container"></slide-bar>
 
     </div>
 </template>
@@ -40,9 +31,9 @@
             return {}
         },
         computed: {
-            ...mapState({
-                isLeftDrawerOpen: 'isLeftDrawerOpen',
-            })
+            ...mapState([
+                'isLeftDrawerOpen',
+            ])
         },
         components: {
             SlideBar

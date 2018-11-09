@@ -10,7 +10,8 @@
         <mu-divider></mu-divider>
 
         <mu-list>
-            <mu-list-item v-for="item in historySongList" button
+            <mu-list-item v-for="item in historySongList"
+                          :key="item.songid" button
                           v-bind:to="toUrl(item)">
                 <!--/player/${song.albumid}/${song.songid}/${song.songmid}-->
                 <mu-list-item-title>
@@ -41,7 +42,6 @@
         },
         created: function () {
             this.repeadLog();
-            console.log('hello world history song')
         },
         methods: {
             repeadLog() {

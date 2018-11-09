@@ -21,9 +21,9 @@
         </mu-container>
 
 
-        <musicPlay :songMid="songmid" :songid="songid">
+        <music-play :songMid="songmid" :songid="songid">
 
-        </musicPlay>
+        </music-play>
 
         <!--{{ $route.params }}-->
         <!--{{ console.log($route.params) }}-->
@@ -66,6 +66,7 @@
             }
         },
         created: function () {
+            logger('created')
             console.log('player view created ')
             console.log(this)
             console.log(this.$route)
@@ -81,10 +82,10 @@
                 this.songInfo()
             }
         },
-        updated: function () {
-            console.log('player view updated ')
-//            musicPlay
-        },
+//        updated: function () {
+//            console.log('player view updated ')
+////            musicPlay
+//        },
         methods: {
             ...mapActions([
 //                'getPlayUrl',
@@ -97,8 +98,46 @@
                     this.singerName = data.data[0].singer[0].name;
                 })
             },
-        }
+        },
+        beforeCreate() {
+            logger('beforeCreate')
+        },
+//        created() {
+////            this.getMusicList('hello')
+//            logger('created')
+//        },
+        beforeMount() {
+            logger('beforeMount')
+        },
+        mounted() {
+            logger('mounted')
+        },
+        beforeUpdate() {
+            logger('beforeUpdate')
+        },
+        updated() {
+            logger('updated')
+        },
+        activated() {
+            logger('activated')
+        },
+        deactivated() {
+            logger('deactivated')
+        },
+        beforeDestroy() {
+            logger('beforeDestroy')
+        },
+        destroyed() {
+            logger('destroyed')
+        },
+        errorCaptured(err, vm, info) {
+            logger('errorCaptured' + info)
+        },
 
+    }
+
+    function logger(life) {
+        console.log('lift method player page:' + life)
     }
 
 </script>

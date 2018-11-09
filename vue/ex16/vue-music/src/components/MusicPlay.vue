@@ -93,6 +93,7 @@
         },
         created: function () {
             this.fetchData()
+            logger('created')
         },
         watch: {
             'songMid': function () {
@@ -100,9 +101,9 @@
                 this.fetchData()
             }
         },
-        updated: function () {
-//            console.log('music play  view updated ')
-        },
+//        updated: function () {
+////            console.log('music play  view updated ')
+//        },
         methods: {
             ...mapActions([
                 'getPlayUrl',
@@ -189,8 +190,47 @@
                 return cTime;
             },
 
-        }
+        },
+        beforeCreate() {
+            logger('beforeCreate')
+        },
+//        created() {
+////            this.getMusicList('hello')
+//            this.getTopMusic()
+//            logger('created')
+//        },
+        beforeMount() {
+            logger('beforeMount')
+        },
+        mounted() {
+            logger('mounted')
+        },
+        beforeUpdate() {
+            logger('beforeUpdate')
+        },
+        updated() {
+            logger('updated')
+        },
+        activated() {
+            logger('activated')
+        },
+        deactivated() {
+            logger('deactivated')
+        },
+        beforeDestroy() {
+            logger('beforeDestroy')
+        },
+        destroyed() {
+            logger('destroyed')
+        },
+        errorCaptured(err, vm, info) {
+            logger('errorCaptured' + info)
+        },
 
+    }
+
+    function logger(life) {
+//        console.log('lift method music play page:' + life)
     }
 </script>
 
@@ -204,8 +244,8 @@
         margin: 0px 10px;
     }
 
-    .content_lyrics{
-        padding:0 20px ;
+    .content_lyrics {
+        padding: 0 20px;
     }
 
 
